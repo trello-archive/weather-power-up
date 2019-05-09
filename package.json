@@ -10,6 +10,7 @@
     "build": "parcel build src/html/*.html"
   },
   "devDependencies": {
-    "parcel-bundler": "^1.12.3"
+    "parcel-bundler": "^1.12.3",
+    "parcel-plugin-interpolate-env": "^0.0.1"
   }
 }
