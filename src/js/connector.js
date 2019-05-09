@@ -1,20 +1,37 @@
+const Promise = window.TrelloPowerUp.Promise;
+
 const fetchWeatherData = function(t) {
-  return t.card('coordinates')
-    .then(function(card) {
-      if (card.coordinates) {
-        const { latitude, longitude } = card.coordinates;
-        // our card has a location, let's fetch the current weather
-        return fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=%%APP_ID%%`)
-        .then(function(response) {
-          return response.json();
-        })
-        .then(function(weatherData) {
-          const freedomUnits = (weatherData.main.temp - 273.15) * 1.8 + 32;
-          weatherData.main.formattedTemp = `${freedomUnits.toFixed()} °F`;
-          return weatherData;
-        });
+  return Promise.all([t.card('coordinates'), t.get('card', 'shared')])
+    .spread(function(card, cache) {
+      if (!card.coordinates) {
+        return null;
       }
-      return null;
+
+      const { latitude, longitude } = card.coordinates;
+      const location = `${latitude}:${longitude}`;
+      if (cache && cache.location === location && cache.expires >= Date.now() && cache.weatherData) {
+        console.log('Cache Hit', location);
+        return cache.weatherData;
+      }
+
+      console.log('Cache Miss', location);
+      // our card has a location, let's fetch the current weather
+      return fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=%%APP_ID%%`)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(weatherData) {
+        const freedomUnits = (weatherData.main.temp - 273.15) * 1.8 + 32;
+        weatherData.main.formattedTemp = `${freedomUnits.toFixed()} °F`;
+        if (t.memberCanWriteToModel('card')) {
+          t.set('card', 'shared', {
+            location: location,
+            expires: Date.now() + (1000 * 60 * 30),
+            weatherData,
+          });
+        }
+        return weatherData;
+      });
     });
 };
 
