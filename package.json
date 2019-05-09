@@ -1,0 +1,15 @@
+{
+  "name": "weather-power-up",
+  "version": "1.0.0",
+  "description": "A small weather Power-Up for Trello",
+  "main": "index.js",
+  "repository": "git@github.com:trello/weather-power-up.git",
+  "author": "Matt Cowan <mcowan@atlassian.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "parcel build src/html/*.html"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.3"
+  }
+}
