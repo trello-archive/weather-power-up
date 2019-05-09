@@ -50,8 +50,6 @@ const cacheWeatherData = (t, coordinates, weatherData) => {
   }
 };
 
-const kelvinToFarhenheit = k => ((k - 273.15) * 1.8 + 32).toFixed();
-
 // we don't want to accidentally make three requests to the weather API per card
 // instead we will hold onto and reuse promises based on the id of the card
 const weatherRequests = new Map();
@@ -77,15 +75,17 @@ const fetchWeatherData = t => {
       }
 
       // our card has a location, let's fetch the current weather
+      const units = 'imperial';
       // %%APP_ID%% is our openweathermapp appid which we store in an environment variable
+      // see: https://openweathermap.org/weather-data for more parameters
       return fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=%%APP_ID%%`
+        `https://api.openweathermap.org/data/2.5/weather?units=${units}&lat=${latitude}&lon=${longitude}&appid=%%APP_ID%%`
       )
         .then(response => response.json())
         .then(weatherData => {
           // we only care about a bit of the data
           const weather = {};
-          weather.temp = kelvinToFarhenheit(weatherData.main.temp);
+          weather.temp = weatherData.main.temp.toFixed();
           weather.wind = weatherData.wind.speed;
           weather.conditions = weatherData.weather[0].main;
           weather.icon = weatherData.weather[0].icon;
@@ -96,6 +96,7 @@ const fetchWeatherData = t => {
     }
   );
 
+  // store the outstanding request so it can be reused
   weatherRequests.set(idCard, weatherRequest);
   return weatherRequest;
 };
@@ -103,6 +104,7 @@ const fetchWeatherData = t => {
 const getWeatherBadges = t =>
   t.card('coordinates').then(card => {
     if (!card.coordinates) {
+      // if the card doesn't have a location at all, we won't show any badges
       return [];
     }
 
@@ -123,7 +125,7 @@ const getWeatherBadges = t =>
           return fetchWeatherData(trello).then(weatherData => {
             return {
               title: 'Wind Speed',
-              text: `🌬️ ${weatherData.wind} knots`,
+              text: `🌬️ ${weatherData.wind} mph`, // in miles / hour
               refresh: 30 * 60,
             };
           });
