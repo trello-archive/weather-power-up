@@ -35,38 +35,58 @@ const fetchWeatherData = function(t) {
     });
 };
 
-const getBadgesForWeatherData = function(weatherData) {
-  if (weatherData == null) {
-    return [];
-  }
-  return [{
-    title: 'Temperature',
-    text: weatherData.main.formattedTemp,
-  }, {
-    title: 'Wind Speed',
-    text: `🌬️ ${weatherData.wind.speed} knots`,
-  }, {
-    title: 'Conditions',
-    icon: `https://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`,
-    text: weatherData.weather[0].main,
-  }]
+const getWeatherBadges = function(t) {
+  return t.card('coordinates')
+  .then(function(card) {
+    if (!card.coordinates) {
+      return [];
+    }
+
+    return [{
+      dynamic: function(t) {
+        return fetchWeatherData(t)
+        .then(function(weatherData) {
+          return {
+            title: 'Temperature',
+            text: weatherData.main.formattedTemp,
+            refresh: 10,
+          };
+        });
+      }
+    }, {
+      dynamic: function(t) {
+        return fetchWeatherData(t)
+        .then(function(weatherData) {
+          return {
+            title: 'Wind Speed',
+            text: `🌬️ ${weatherData.wind.speed} knots`,
+            refresh: 10,
+          };
+        });
+      }
+    }, {
+      dynamic: function(t) {
+        return fetchWeatherData(t)
+        .then(function(weatherData) {
+          return {
+            title: 'Conditions',
+            icon: `https://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`,
+            text: weatherData.weather[0].main,
+            refresh: 10,
+          };
+        });
+      }
+    }];
+  })
 };
 
 window.TrelloPowerUp.initialize({
   'card-badges': function(t) {
     // return an array of card badges for the given card
-    return fetchWeatherData(t)
-    .then(function(weatherData) {
-      const badges = getBadgesForWeatherData(weatherData);
-      return badges;
-    });
+    return getWeatherBadges(t);
   },
   'card-detail-badges': function(t) {
     // return an array of card badges for the given card
-    return fetchWeatherData(t)
-    .then(function(weatherData) {
-      const badges = getBadgesForWeatherData(weatherData);
-      return badges;
-    });
+    return getWeatherBadges(t);
   },
 });
