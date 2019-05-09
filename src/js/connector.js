@@ -49,7 +49,7 @@ const getWeatherBadges = function(t) {
           return {
             title: 'Temperature',
             text: weatherData.main.formattedTemp,
-            refresh: 10,
+            refresh: 30 * 60,
           };
         });
       }
@@ -60,7 +60,7 @@ const getWeatherBadges = function(t) {
           return {
             title: 'Wind Speed',
             text: `🌬️ ${weatherData.wind.speed} knots`,
-            refresh: 10,
+            refresh: 30 * 60,
           };
         });
       }
@@ -72,7 +72,7 @@ const getWeatherBadges = function(t) {
             title: 'Conditions',
             icon: `https://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`,
             text: weatherData.weather[0].main,
-            refresh: 10,
+            refresh: 30 * 60,
           };
         });
       }
