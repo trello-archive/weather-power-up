@@ -114,7 +114,7 @@ const getWeatherBadges = t =>
           return fetchWeatherData(trello).then(weatherData => {
             return {
               title: 'Temperature',
-              text: `🌡 ${weatherData.temp} °F`,
+              text: `${weatherData.temp} °F`,
               refresh: 30 * 60,
             };
           });
