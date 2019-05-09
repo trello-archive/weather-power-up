@@ -10,11 +10,9 @@ const fetchWeatherData = function(t) {
       const { latitude, longitude } = card.coordinates;
       const location = `${latitude}:${longitude}`;
       if (cache && cache.location === location && cache.expires >= Date.now() && cache.weatherData) {
-        console.log('Cache Hit', location);
         return cache.weatherData;
       }
 
-      console.log('Cache Miss', location);
       // our card has a location, let's fetch the current weather
       return fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=%%APP_ID%%`)
       .then(function(response) {
