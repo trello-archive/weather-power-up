@@ -16,7 +16,7 @@ window.TrelloPowerUp.initialize({
         .then(function(weatherData) {
           const freedomUnits = (weatherData.main.temp - 273.15) * 1.8 + 32;
           return [{
-            text: `${freedomUnits} °F`,
+            text: `${freedomUnits.toFixed()} °F`,
           }, {
             text: `🌬️ ${weatherData.wind.speed} knots`,
           }, {
