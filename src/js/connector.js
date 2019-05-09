@@ -14,10 +14,14 @@ window.TrelloPowerUp.initialize({
           return response.json();
         })
         .then(function(weatherData) {
+          const freedomUnits = (weatherData.main.temp - 273.15) * 1.8 + 32;
           return [{
-            text: weatherData.main.temp.toString()
+            text: `${freedomUnits} °F`,
           }, {
-            text: weatherData.wind.speed.toString()
+            text: `🌬️ ${weatherData.wind.speed} knots`,
+          }, {
+            icon: `https://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`,
+            text: weatherData.weather[0].main,
           }]
         });
       }
