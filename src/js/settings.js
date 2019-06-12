@@ -1,4 +1,10 @@
-const t = window.TrelloPowerUp.iframe();
+const t = window.TrelloPowerUp.iframe({
+  localization: {
+    defaultLocale: 'en',
+    supportedLocales: ['en', 'es'],
+    resourceUrl: './{locale}.json',
+  },
+});
 
 const defaultUnit = locale => {
   if (locale === 'en-US') {
