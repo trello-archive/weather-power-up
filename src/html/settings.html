@@ -3,15 +3,19 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="https://p.trellocdn.com/power-up.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/settings.css">
   </head>
   <body>
-    <strong data-i18n-id="preferred-units">Preferred Units:</strong>
-    <hr />
+    <p data-i18n-id="preferred-units">Preferred Units:</p>
     <div>
-      <input id="metric" type="radio" name="units" value="metric">
-      <label for="metric" data-i18n-id="metric">Metric</label>
-      <input id="imperial" type="radio" name="units" value="imperial">
-      <label for="imperial" data-i18n-id="imperial">Imperial</label>
+      <div>
+        <input id="metric" type="radio" name="units" value="metric">
+        <label for="metric" data-i18n-id="metric">Metric</label>
+      </div>
+      <div>
+        <input id="imperial" type="radio" name="units" value="imperial">
+        <label for="imperial" data-i18n-id="imperial">Imperial</label>
+      </div>
     </div>
     <script src="https://p.trellocdn.com/power-up.min.js" crossorigin="anonymous"></script>
     <script src="../js/settings.js"></script>
