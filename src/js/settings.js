@@ -10,6 +10,12 @@ const defaultUnit = locale => {
 const metricBtn = document.getElementById('metric');
 const imperialBtn = document.getElementById('imperial');
 
+document.querySelectorAll('input[type=radio][name=units]').forEach(radioBtn => {
+  radioBtn.addEventListener('change', e => {
+    t.set('member', 'private', 'units', e.target.value);
+  });
+});
+
 t.render(() => {
   return t
     .get('member', 'private', 'units', defaultUnit(t.getContext().locale))
