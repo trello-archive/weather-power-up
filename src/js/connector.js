@@ -151,4 +151,10 @@ window.TrelloPowerUp.initialize({
   'card-badges': t => getWeatherBadges(t),
   // return an array of card badges for the given card
   'card-detail-badges': t => getWeatherBadges(t),
+  'show-settings': t => {
+    return t.popup({
+      title: 'Weather Settings',
+      url: './settings.html',
+    });
+  },
 });
