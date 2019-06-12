@@ -23,6 +23,7 @@ document.querySelectorAll('input[type=radio][name=units]').forEach(radioBtn => {
 });
 
 t.render(() => {
+  t.localizeNode(document.body);
   return t.get('member', 'private', 'units', defaultUnit(window.locale)).then(unitPreference => {
     if (unitPreference === 'metric') {
       metricBtn.checked = true;
