@@ -12,4 +12,5 @@
     default-src 'self';
     connect-src 'self' https://p.trellocdn.com https://api.openweathermap.org;
     script-src 'self' https://p.trellocdn.com;
+    style-src 'self' https://p.trellocdn.com;
     frame-ancestors https://trello.com;'''
