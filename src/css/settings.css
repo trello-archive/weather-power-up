@@ -1,5 +1,19 @@
+input[type="radio"] {
+  padding-right: 4px;
+}
+
 label {
   display: unset;
   font-weight: unset;
   margin-bottom: unset;
+}
+
+
+.radios {
+  padding-left: 4px;
+  padding-bottom: 4px;
+}
+
+.radio-option {
+  padding-bottom: 4px;
 }
