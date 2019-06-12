@@ -46,6 +46,6 @@
     "trailingComma": "es5"
   },
   "staticFiles": {
-    "staticPath": "src/images"
+    "staticPath": ["src/images", "src/strings"]
   }
 }

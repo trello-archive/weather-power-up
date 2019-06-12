@@ -23,5 +23,6 @@ t.render(() => {
     } else {
       imperialBtn.checked = true;
     }
+    t.sizeTo(document.body);
   });
 });

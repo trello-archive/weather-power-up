@@ -129,7 +129,7 @@ const getWeatherBadges = (t, opts) =>
               temperature = `${(temperature * 1.8 + 32).toFixed()} °F`;
             }
             return {
-              title: 'Temperature',
+              title: trello.localizeKey('temperature'),
               text: temperature,
               refresh: 30 * 60,
             };
@@ -146,7 +146,7 @@ const getWeatherBadges = (t, opts) =>
               windSpeed = `🌬️ ${(windSpeed * 0.62).toFixed()} mph`;
             }
             return {
-              title: 'Wind Speed',
+              title: trello.localizeKey('wind-speed'),
               text: windSpeed,
               refresh: 30 * 60,
             };
@@ -157,7 +157,7 @@ const getWeatherBadges = (t, opts) =>
         dynamic(trello) {
           return fetchWeatherData(trello).then(weatherData => {
             return {
-              title: 'Conditions',
+              title: trello.localizeKey('conditions'),
               icon: `https://openweathermap.org/img/w/${weatherData.icon}.png`,
               text: weatherData.conditions,
               refresh: 30 * 60,
@@ -168,15 +168,24 @@ const getWeatherBadges = (t, opts) =>
     ];
   });
 
-window.TrelloPowerUp.initialize({
-  // return an array of card badges for the given card
-  'card-badges': getWeatherBadges,
-  // return an array of card badges for the given card
-  'card-detail-badges': getWeatherBadges,
-  'show-settings': t => {
-    return t.popup({
-      title: 'Weather Settings',
-      url: './settings.html',
-    });
+window.TrelloPowerUp.initialize(
+  {
+    // return an array of card badges for the given card
+    'card-badges': getWeatherBadges,
+    // return an array of card badges for the given card
+    'card-detail-badges': getWeatherBadges,
+    'show-settings': t => {
+      return t.popup({
+        title: t.localizeKey('weather-settings'),
+        url: './settings.html',
+      });
+    },
   },
-});
+  {
+    localization: {
+      defaultLocale: 'en',
+      supportedLocales: ['en', 'es'],
+      resourceUrl: './{locale}.json',
+    },
+  }
+);
