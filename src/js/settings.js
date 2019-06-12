@@ -17,13 +17,11 @@ document.querySelectorAll('input[type=radio][name=units]').forEach(radioBtn => {
 });
 
 t.render(() => {
-  return t
-    .get('member', 'private', 'units', defaultUnit(t.getContext().locale))
-    .then(unitPreference => {
-      if (unitPreference === 'metric') {
-        metricBtn.checked = true;
-      } else {
-        imperialBtn.checked = true;
-      }
-    });
+  return t.get('member', 'private', 'units', defaultUnit(window.locale)).then(unitPreference => {
+    if (unitPreference === 'metric') {
+      metricBtn.checked = true;
+    } else {
+      imperialBtn.checked = true;
+    }
+  });
 });

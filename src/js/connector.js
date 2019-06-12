@@ -75,7 +75,7 @@ const fetchWeatherData = t => {
       }
 
       // our card has a location, let's fetch the current weather
-      const units = 'imperial';
+      const units = 'metric';
       // %%APP_ID%% is our openweathermapp appid which we store in an environment variable
       // see: https://openweathermap.org/weather-data for more parameters
       return fetch(
@@ -85,7 +85,7 @@ const fetchWeatherData = t => {
         .then(weatherData => {
           // we only care about a bit of the data
           const weather = {};
-          weather.temp = weatherData.main.temp.toFixed();
+          weather.temp = weatherData.main.temp;
           weather.wind = weatherData.wind.speed;
           weather.conditions = weatherData.weather[0].main;
           weather.icon = weatherData.weather[0].icon;
@@ -101,8 +101,18 @@ const fetchWeatherData = t => {
   return weatherRequest;
 };
 
-const getWeatherBadges = t =>
-  t.card('coordinates').then(card => {
+const defaultUnit = locale => {
+  if (locale === 'en-US') {
+    return 'imperial';
+  }
+  return 'metric';
+};
+
+const getWeatherBadges = (t, opts) =>
+  Promise.all([
+    t.card('coordinates'),
+    t.get('member', 'private', 'units', defaultUnit(opts.locale)),
+  ]).spread((card, units) => {
     if (!card.coordinates) {
       // if the card doesn't have a location at all, we won't show any badges
       return [];
@@ -112,9 +122,15 @@ const getWeatherBadges = t =>
       {
         dynamic(trello) {
           return fetchWeatherData(trello).then(weatherData => {
+            let temperature = weatherData.temp;
+            if (units === 'metric') {
+              temperature = `${temperature.toFixed()} °C`;
+            } else {
+              temperature = `${(temperature * 1.8 + 32).toFixed()} °F`;
+            }
             return {
               title: 'Temperature',
-              text: `${weatherData.temp} °F`,
+              text: temperature,
               refresh: 30 * 60,
             };
           });
@@ -123,9 +139,15 @@ const getWeatherBadges = t =>
       {
         dynamic(trello) {
           return fetchWeatherData(trello).then(weatherData => {
+            let windSpeed = weatherData.wind;
+            if (units === 'metric') {
+              windSpeed = `🌬️ ${windSpeed.toFixed()} kph`;
+            } else {
+              windSpeed = `🌬️ ${(windSpeed * 0.62).toFixed()} mph`;
+            }
             return {
               title: 'Wind Speed',
-              text: `🌬️ ${weatherData.wind.toFixed()} mph`, // in miles / hour
+              text: windSpeed,
               refresh: 30 * 60,
             };
           });
@@ -148,9 +170,9 @@ const getWeatherBadges = t =>
 
 window.TrelloPowerUp.initialize({
   // return an array of card badges for the given card
-  'card-badges': t => getWeatherBadges(t),
+  'card-badges': getWeatherBadges,
   // return an array of card badges for the given card
-  'card-detail-badges': t => getWeatherBadges(t),
+  'card-detail-badges': getWeatherBadges,
   'show-settings': t => {
     return t.popup({
       title: 'Weather Settings',
