@@ -1,5 +1,6 @@
 // %%APP_ID%% is our openweathermapp appid which we store in an environment variable
 const API_BASE = 'https://api.openweathermap.org/data/2.5/weather?appid=%%APP_ID%%';
+const { Promise } = window.TrelloPowerUp;
 
 const clearCache = t => {
   if (t.memberCanWriteToModel('card')) {
