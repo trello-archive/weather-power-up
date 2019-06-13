@@ -1,9 +1,10 @@
 {
-  "preferred-units": "Preferred Units:",
+  "preferred-units": "Preferred Units",
   "metric": "Metric",
   "imperial": "Imperial",
   "weather-settings": "Weather Settings",
   "conditions": "Conditions",
   "wind-speed": "Wind Speed",
-  "temperature": "Temperature"
+  "temperature": "Temperature",
+  "display-preferences": "Display Preferences"
 }
