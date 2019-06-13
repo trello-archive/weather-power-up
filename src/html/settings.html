@@ -6,17 +6,45 @@
     <link rel="stylesheet" type="text/css" href="../css/settings.css">
   </head>
   <body>
-    <p data-i18n-id="preferred-units">Preferred Units:</p>
-    <div class="radios">
-      <div class="radio-option">
-        <input id="metric" type="radio" name="units" value="metric">
-        <label for="metric" data-i18n-id="metric">Metric</label>
+    <fieldset>
+      <legend data-i18n-id="preferred-units">Preferred Units:</legend>
+      <div class="radios">
+        <div class="radio-option">
+          <input id="metric" type="radio" name="units" value="metric">
+          <label for="metric" data-i18n-id="metric">Metric</label>
+        </div>
+        <div class="radio-option">
+          <input id="imperial" type="radio" name="units" value="imperial">
+          <label for="imperial" data-i18n-id="imperial">Imperial</label>
+        </div>
       </div>
-      <div class="radio-option">
-        <input id="imperial" type="radio" name="units" value="imperial">
-        <label for="imperial" data-i18n-id="imperial">Imperial</label>
+    </fieldset>
+    <fieldset>
+      <legend data-i18n-id="display-preferences">Display Preferences:</legend>
+      <div>
+        <div>
+          <p>Temperature</p>
+          <input id="temp-front" type="checkbox">
+          <label for="temp-front">Card Front</label>
+          <input id="temp-back" type="checkbox">
+          <label for="temp-back">Card Back</label>
+        </div>
+        <div>
+          <p>Wind Speed</p>
+          <input id="wind-front" type="checkbox">
+          <label for="wind-front">Card Front</label>
+          <input id="wind-back" type="checkbox">
+          <label for="wind-back">Card Back</label>
+        </div>
+        <div>
+          <p>Conditions</p>
+          <input id="conditions-front" type="checkbox">
+          <label for="conditions-front">Card Front</label>
+          <input id="conditions-back" type="checkbox">
+          <label for="conditions-back">Card Back</label>
+        </div>
       </div>
-    </div>
+    </fieldset>
     <script src="https://p.trellocdn.com/power-up.min.js" crossorigin="anonymous"></script>
     <script src="../js/settings.js"></script>
   </body>
