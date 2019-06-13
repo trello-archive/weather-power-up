@@ -39,6 +39,10 @@ legend {
   margin-bottom: 8px;
 }
 
+.opts-group:last-of-type {
+  margin-bottom: 0;
+}
+
 .opts-group p {
   font-weight: 500;
   margin: 4px 0;
