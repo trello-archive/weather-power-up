@@ -15,7 +15,11 @@ document.querySelectorAll('input[type=radio][name=units]').forEach(radioBtn => {
 // setup event listeners on the display settings checkboxes
 document.querySelectorAll('input[type=checkbox]').forEach(checkbox => {
   checkbox.addEventListener('change', e => {
-    t.set('board', 'shared', e.target.value, e.target.checked);
+    if (e.target.checked) {
+      t.remove('board', 'shared', e.target.value);
+    } else {
+      t.set('board', 'shared', e.target.value, false);
+    }
   });
 });
 
@@ -32,15 +36,15 @@ t.render(() => {
       unitBtn.checked = true;
     }
     // select the currently selected display preferences
-    if (data && data.board && data.board.shared) {
-      // potentially some display overrides
-      Object.keys(data.board.shared).forEach(pref => {
-        const checkbox = document.querySelector(`input[type=checkbox][value=${pref}]`);
-        if (checkbox && checkbox.checked !== data.board.shared.pref) {
-          checkbox.checked = data.board.shared.pref;
-        }
-      });
-    }
+    /* eslint-disable no-param-reassign */
+    document.querySelectorAll('input[type=checkbox]').forEach(checkbox => {
+      if (data && data.board && data.board.shared && data.board.shared[checkbox.value] === false) {
+        checkbox.checked = false;
+      } else {
+        checkbox.checked = true;
+      }
+    });
+    /* eslint-enable no-param-reassign */
     // ensure that our popup is properly sized to fit our content
     t.sizeTo(document.body);
   });
