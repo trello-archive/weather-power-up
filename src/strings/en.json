@@ -6,5 +6,7 @@
   "conditions": "Conditions",
   "wind-speed": "Wind Speed",
   "temperature": "Temperature",
-  "display-preferences": "Display Preferences"
+  "display-preferences": "Display Preferences",
+  "front": "Front",
+  "back": "Back"
 }

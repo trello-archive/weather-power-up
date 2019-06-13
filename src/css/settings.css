@@ -1,3 +1,8 @@
+fieldset {
+  border: 1px solid rgba(9,30,66,.13);
+  margin: 0 2px 4px 2px;
+}
+
 input[type="radio"] {
   padding-right: 4px;
 }
@@ -8,6 +13,10 @@ label {
   margin-bottom: unset;
 }
 
+legend {
+  font-weight: bold;
+  padding: 0 4px;
+}
 
 .radios {
   padding-left: 4px;
@@ -15,4 +24,8 @@ label {
 
 .radio-option {
   padding-bottom: 4px;
+}
+
+.opts-group {
+  margin-bottom: 8px;
 }

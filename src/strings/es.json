@@ -6,5 +6,7 @@
   "conditions": "Condiciones",
   "wind-speed": "Velocidad del viento",
   "temperature": "Temperatura",
-  "display-preferences": "Preferencias de pantalla"
+  "display-preferences": "Preferencias de pantalla",
+  "front": "Frente",
+  "back": "Espalda"
 }
