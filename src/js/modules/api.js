@@ -9,7 +9,7 @@ const clearCache = t => {
 };
 
 const getCachedData = t =>
-  Promise.all([t.card('coordinates'), t.get('card', 'shared', 'cache')]).spread((card, cache) => {
+  Promise.all([t.card('coordinates'), t.get('card', 'shared', 'cache')]).then(([card, cache]) => {
     if (!cache) {
       // nothing cached at the moment
       return null;
@@ -63,8 +63,8 @@ export default function fetchWeatherData(t, lang = 'en') {
     return weatherRequests.get(idCard);
   }
 
-  const weatherRequest = Promise.all([t.card('coordinates'), getCachedData(t)]).spread(
-    (card, cache) => {
+  const weatherRequest = Promise.all([t.card('coordinates'), getCachedData(t)]).then(
+    ([card, cache]) => {
       if (!card.coordinates) {
         weatherRequests.delete(idCard);
         return null;

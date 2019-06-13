@@ -5,9 +5,7 @@ const t = window.TrelloPowerUp.iframe({
   localization: localizationSettings,
 });
 
-const metricBtn = document.getElementById('metric');
-const imperialBtn = document.getElementById('imperial');
-
+// setup event listeners on radio buttons to save preferences when they change
 document.querySelectorAll('input[type=radio][name=units]').forEach(radioBtn => {
   radioBtn.addEventListener('change', e => {
     t.set('member', 'private', 'units', e.target.value);
@@ -19,10 +17,9 @@ t.render(() => {
   return t
     .get('member', 'private', 'units', defaultUnitForLocale(window.locale))
     .then(unitPreference => {
-      if (unitPreference === 'metric') {
-        metricBtn.checked = true;
-      } else {
-        imperialBtn.checked = true;
+      const unitBtn = document.querySelector(`input[type=radio][value=${unitPreference}]`);
+      if (unitBtn) {
+        unitBtn.checked = true;
       }
       t.sizeTo(document.body);
     });

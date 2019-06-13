@@ -9,7 +9,7 @@ const getWeatherBadges = (t, opts) =>
   Promise.all([
     t.card('coordinates'),
     t.get('member', 'private', 'units', defaultUnitForLocale(opts.locale)),
-  ]).spread((card, units) => {
+  ]).then(([card, units]) => {
     if (!card.coordinates) {
       // if the card doesn't have a location at all, we won't show any badges
       return [];
