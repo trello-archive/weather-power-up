@@ -1,0 +1,12 @@
+{
+  "preferred-units": "Одиниці вимірювання, яким віддається перевага",
+  "metric": "Метричні",
+  "imperial": "Імперські",
+  "weather-settings": "Налаштування погоди",
+  "conditions": "Умови",
+  "wind-speed": "Швидкість вітру",
+  "temperature": "Температура",
+  "display-preferences": "Параметри відображення",
+  "front": "Фронт",
+  "back": "Назад"
+}

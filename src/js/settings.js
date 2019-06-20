@@ -36,15 +36,15 @@ t.render(() => {
       unitBtn.checked = true;
     }
     // select the currently selected display preferences
-    /* eslint-disable no-param-reassign */
     document.querySelectorAll('input[type=checkbox]').forEach(checkbox => {
+      /* eslint-disable no-param-reassign */
       if (data && data.board && data.board.shared && data.board.shared[checkbox.value] === false) {
         checkbox.checked = false;
       } else {
         checkbox.checked = true;
       }
+      /* eslint-enable no-param-reassign */
     });
-    /* eslint-enable no-param-reassign */
     // ensure that our popup is properly sized to fit our content
     t.sizeTo(document.body);
   });

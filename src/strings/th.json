@@ -1,0 +1,12 @@
+{
+  "preferred-units": "หน่วยที่ต้องการใช้",
+  "metric": "เมตริก",
+  "imperial": "อิมพีเรียล",
+  "weather-settings": "การตั้งค่าอากาศ",
+  "conditions": "เงื่อนไข",
+  "wind-speed": "ความเร็วลม",
+  "temperature": "อุณหภูมิ",
+  "display-preferences": "การกำหนดลักษณะการแสดงผล",
+  "front": "ด้านหน้า",
+  "back": "กลับ"
+}

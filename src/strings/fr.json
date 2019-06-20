@@ -1,0 +1,12 @@
+{
+  "preferred-units": "Unités à utiliser",
+  "metric": "Unités métriques",
+  "imperial": "Unités impériales",
+  "weather-settings": "Paramètres météo",
+  "conditions": "Prévisions",
+  "wind-speed": "Vitesse du vent",
+  "temperature": "Température",
+  "display-preferences": "Préférences d'affichage",
+  "front": "Premier plan",
+  "back": "Précédent"
+}

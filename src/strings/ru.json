@@ -1,0 +1,12 @@
+{
+  "preferred-units": "Единицы измерения",
+  "metric": "Метрическая система",
+  "imperial": "Английская система",
+  "weather-settings": "Параметры погоды",
+  "conditions": "Метеоусловия",
+  "wind-speed": "Скорость ветра",
+  "temperature": "Температура",
+  "display-preferences": "Внешний вид",
+  "front": "Фронт",
+  "back": "Назад"
+}

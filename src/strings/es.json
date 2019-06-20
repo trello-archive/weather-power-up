@@ -1,12 +1,12 @@
 {
   "preferred-units": "Unidades preferidas",
-  "metric": "Métrico",
-  "imperial": "Imperial",
-  "weather-settings": "Ajustes del clima",
+  "metric": "Métricas",
+  "imperial": "Imperiales",
+  "weather-settings": "Configuración del tiempo",
   "conditions": "Condiciones",
   "wind-speed": "Velocidad del viento",
   "temperature": "Temperatura",
-  "display-preferences": "Preferencias de pantalla",
-  "front": "Frente",
-  "back": "Espalda"
+  "display-preferences": "Preferencias de visualización",
+  "front": "Parte frontal",
+  "back": "Atrás"
 }

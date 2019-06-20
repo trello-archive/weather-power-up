@@ -1,0 +1,12 @@
+{
+  "preferred-units": "Ensisijaiset yksiköt",
+  "metric": "Metrijärjestelmä",
+  "imperial": "Englantilainen",
+  "weather-settings": "Sääasetukset",
+  "conditions": "Olosuhteet",
+  "wind-speed": "Tuulen nopeus",
+  "temperature": "Lämpötila",
+  "display-preferences": "Näyttöasetukset",
+  "front": "Edessä",
+  "back": "Edellinen"
+}

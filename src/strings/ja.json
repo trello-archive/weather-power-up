@@ -1,0 +1,12 @@
+{
+  "preferred-units": "使用する単位",
+  "metric": "メートル法",
+  "imperial": "英単位",
+  "weather-settings": "Weather設定",
+  "conditions": "条件",
+  "wind-speed": "風速",
+  "temperature": "温度",
+  "display-preferences": "ディスプレイ環境設定",
+  "front": "前線",
+  "back": "戻る"
+}
