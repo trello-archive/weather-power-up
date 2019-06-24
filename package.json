@@ -14,14 +14,14 @@
     "lint": "eslint src"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.3.0",
+    "babel-eslint": "^10.0.2",
+    "eslint": "^6.0.0",
     "eslint-config-airbnb": "^17.1.0",
-    "eslint-config-prettier": "^4.3.0",
+    "eslint-config-prettier": "^5.0.0",
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-prettier": "^3.1.0",
-    "eslint-plugin-react": "^7.11.0",
+    "eslint-plugin-react": "^7.14.1",
     "parcel-bundler": "^1.12.3",
     "parcel-plugin-interpolate-env": "^0.0.1",
     "parcel-plugin-static-files-copy": "^2.1.2",
@@ -46,6 +46,9 @@
     "trailingComma": "es5"
   },
   "staticFiles": {
-    "staticPath": ["src/images", "src/strings"]
+    "staticPath": [
+      "src/images",
+      "src/strings"
+    ]
   }
 }
