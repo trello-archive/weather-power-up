@@ -1,5 +1,6 @@
 import { defaultUnitForLocale, celsiusToFahrenheit, kphToMph } from './modules/util';
 import fetchWeatherData from './modules/api';
+import getConditionKey from './modules/conditions-map';
 import localizationSettings from './modules/localizationSettings';
 
 const { Promise } = window.TrelloPowerUp;
@@ -66,10 +67,11 @@ const getWeatherBadges = (t, opts) =>
     const conditionsBadge = {
       dynamic(trello) {
         return fetchWeatherData(trello).then(weatherData => {
+          const conditionKey = getConditionKey(weatherData.conditions);
           return {
             title: trello.localizeKey('conditions'),
             icon: `https://openweathermap.org/img/w/${weatherData.icon}.png`,
-            text: weatherData.conditions,
+            text: conditionKey ? trello.localizeKey(conditionKey) : '',
             refresh: REFRESH_INTERVAL,
           };
         });
