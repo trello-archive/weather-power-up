@@ -85,13 +85,15 @@ const getWeatherBadges = (t, opts) =>
       badges = [tempBadge, windBadge, conditionsBadge];
     } else {
       // there are some potential preferences
-      [['temp', tempBadge], ['wind', windBadge], ['conditions', conditionsBadge]].forEach(
-        ([type, badge]) => {
-          if (showBadge(t.getContext().command, type, prefs)) {
-            badges.push(badge);
-          }
+      [
+        ['temp', tempBadge],
+        ['wind', windBadge],
+        ['conditions', conditionsBadge],
+      ].forEach(([type, badge]) => {
+        if (showBadge(t.getContext().command, type, prefs)) {
+          badges.push(badge);
         }
-      );
+      });
     }
 
     return badges;
