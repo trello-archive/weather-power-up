@@ -20,15 +20,21 @@ window.estimate.addEventListener('submit', function (event) {
 trello.render(function () {
     return trello.get('card', 'shared', 'estimateDev')
         .then(function (estimateDev) {
+            if(estimateDev === undefined)
+                estimateDev = 0;
             window.estimateDev.value = estimateDev;
         })
         .then(function () {
             trello.get('card', 'shared', 'doneDev')
                 .then(function (doneDev) {
+                    if(doneDev === undefined)
+                        doneDev = 0;
                     window.doneDev.value = doneDev;
                 }).then(function () {
                     trello.get('card', 'shared', 'remainingDev')
                         .then(function (remainingDev) {
+                            if(remainingDev == undefined)
+                                remainingDev = 0;
                             window.remainingDev.value = remainingDev
                         })
                         .then(function () {
