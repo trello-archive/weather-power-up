@@ -118,7 +118,7 @@ window.TrelloPowerUp.initialize(
         callback: function(t){
           return t.popup({
             title: "Estimation",
-            url: 'estimate.html'
+            url: './../html/estimate.html'
           });
         }
       }];
@@ -128,7 +128,7 @@ window.TrelloPowerUp.initialize(
     'show-settings': t => {
       return t.popup({
         title: t.localizeKey('weather-settings'),
-        url: './settings.html',
+        url: './../html/settings.html',
         height: 281,
       });
     },
