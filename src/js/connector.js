@@ -131,12 +131,24 @@ window.TrelloPowerUp.initialize(
         .then(function (estimate) {
           return [{
             icon: estimate ? GREY_ROCKET_ICON : WHITE_ROCKET_ICON,
-            text: estimate || 'Well  lindão!',
+            text: estimate || 'No Estimate!',
             color: estimate ? null : 'red',
           }];
         });
     },
-    'card-detail-badges': getWeatherBadges,
+    'card-detail-badges': function(t, options) {
+      return [{
+        title: 'Estimate',
+        color: 'red',
+        text: 'Large',
+        callback: function(t) {
+          return t.popup({
+            title: "Estimation",
+            url: 'estimate.html',
+          });
+        }
+      }]
+    },
     'show-settings': t => {
       return t.popup({
         title: t.localizeKey('weather-settings'),
