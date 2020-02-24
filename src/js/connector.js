@@ -140,7 +140,23 @@ window.TrelloPowerUp.initialize(
       return t.get('card', 'shared', 'estimate')
       .then(function(estimate) {
         return [{
-          title: 'Estimate',
+          title: 'Estimativa DEV',
+          text: estimate || 'No Estimate!',
+          color: estimate ? null : 'red',
+          callback: function(t) {
+            return t.popup({
+              title: "Estimation",
+              url: 'estimate.html',
+            });
+          }
+        }]
+      });
+    },
+    'card-detail-badges': function(t, options) {
+      return t.get('card', 'shared', 'estimate')
+      .then(function(estimate) {
+        return [{
+          title: 'Estimativa QA',
           text: estimate || 'No Estimate!',
           color: estimate ? null : 'red',
           callback: function(t) {
