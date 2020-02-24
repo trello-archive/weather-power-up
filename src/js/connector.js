@@ -38,7 +38,7 @@ const getWeatherBadges = (t, opts) =>
             temp = `${celsiusToFahrenheit(temp).toFixed()} °F`;
           }
           return {
-            title: trello.localizeKey('temperature'),
+            title: "Teste",
             text: temp,
             refresh: REFRESH_INTERVAL,
           };
@@ -78,17 +78,28 @@ const getWeatherBadges = (t, opts) =>
       },
     };
 
+    const testBadge = {
+      dynamic(trello) {
+        return {
+          title: trello.localizeKey('test-dev'),
+          text: 'texto de teste',
+          refresh: REFRESH_INTERVAL,
+        };
+      },
+    };
+
     let badges = [];
 
     if (!prefs || typeof prefs !== 'object') {
       // default to all badges
-      badges = [tempBadge, windBadge, conditionsBadge];
+      badges = [tempBadge, windBadge, conditionsBadge, testBadge];
     } else {
       // there are some potential preferences
       [
         ['temp', tempBadge],
         ['wind', windBadge],
         ['conditions', conditionsBadge],
+        ['']
       ].forEach(([type, badge]) => {
         if (showBadge(t.getContext().command, type, prefs)) {
           badges.push(badge);
