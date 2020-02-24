@@ -128,7 +128,7 @@ window.TrelloPowerUp.initialize(
     'show-settings': t => {
       return t.popup({
         title: t.localizeKey('weather-settings'),
-        url: 'settings.html',
+        url: '♦settings.html',
         height: 281,
       });
     },
