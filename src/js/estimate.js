@@ -12,7 +12,6 @@ window.estimate.addEventListener('submit', function (event) {
 trello.render(function () {
     return trello.get('card', 'shared', 'estimate')
         .then(function (estimate) {
-            alert(estimate);
             window.estimateSize.value = estimate;
         })
         .then(function () {
