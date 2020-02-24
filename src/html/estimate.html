@@ -8,13 +8,15 @@
   </head>
   <body>
     <form id="estimate">
-      <label for="estimateSize">Estimate:</label>
-      <select name="size" id="estimateSize">
-        <option value="small">Small</option>
-        <option value="medium">Medium</option>
-        <option value="large">Large</option>
-        <option value="x-large">Extra Large</option>
-      </select>
+      <label>Estimado:</label>
+      <input name="estimateDev" id="estimateDev" />
+
+      <label>Feito:</label>
+      <input name="doneDev" id="doneDev" />
+
+      <label>Restante:</label>
+      <input name="remainingDev" id="remainingDev" />
+
       <button type="submit" class="mod-primary">Save</button>
     </form>
     <script src="./../js/estimate.js"></script>
