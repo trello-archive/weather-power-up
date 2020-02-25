@@ -13,7 +13,7 @@ const getWeatherBadges = (t, opts) =>
         return {
           title: 'Estimativa DEV',
           text: remainingDev || 'Não estimado',
-          color: remainingDev === undefined  || null || "" ? 'red' : remainingDev === 0 ? 'green' : 'blue',
+          color: isEmpty(remainingDev) ? 'red' : remainingDev === 0 ? 'green' : 'blue',
           callback: function (t) {
             return t.popup({
               title: "Estimativa Dev",
@@ -29,7 +29,7 @@ const getWeatherBadges = (t, opts) =>
         return {
           title: 'Estimativa QA',
           text: remainingQa || 'Não estimado',
-          color: remainingQa === undefined  || null || "" ? 'red' : remainingQa === 0 ? 'green' : 'blue',
+          color: isEmpty(remainingQa) ? 'red' : remainingQa === 0 ? 'green' : 'blue',
           callback: function (t) {
             return t.popup({
               title: "Estimativa QA",
@@ -45,7 +45,7 @@ const getWeatherBadges = (t, opts) =>
         return {
           title: 'Estimativa GP',
           text: remainingGp || 'Não estimado',
-          color: remainingGp === undefined  || null || "" ? 'red' : remainingGp === 0 ? 'green' : 'blue',
+          color: isEmpty(remainingGp) ? 'red' : remainingGp === 0 ? 'green' : 'blue',
           callback: function (t) {
             return t.popup({
               title: "Estimativa GP",
@@ -61,7 +61,7 @@ const getWeatherBadges = (t, opts) =>
         return {
           title: 'Estimativa UX-UI',
           text: remainingUx || 'Não estimado',
-          color: remainingUx === undefined  || null || "" ? 'red' : remainingUx === 0 ? 'green' : 'blue',
+          color: isEmpty(remainingUx) ? 'red' : remainingUx === 0 ? 'green' : 'blue',
           callback: function (t) {
             return t.popup({
               title: "Estimativa UX-UI",
@@ -80,6 +80,10 @@ const getWeatherBadges = (t, opts) =>
     badges.push(badgeEstimateUx);
     return badges;
   });
+
+function isEmpty(val) {
+  return (val === undefined || val == null || val.length <= 0) ? true : false;
+}
 
 var GREY_ROCKET_ICON = 'https://cdn.glitch.com/c69415fd-f70e-4e03-b43b-98b8960cd616%2Frocket-ship-grey.png?1496162964717';
 var WHITE_ROCKET_ICON = 'https://cdn.glitch.com/c69415fd-f70e-4e03-b43b-98b8960cd616%2Fwhite-rocket-ship.png?1495811896182';
