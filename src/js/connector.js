@@ -146,7 +146,7 @@ window.TrelloPowerUp.initialize(
           callback: function(t) {
             return t.popup({
               title: "Estimation",
-              url: 'estimate.html',
+              url: 'estimateDev.html',
             });
           }
         },
@@ -157,7 +157,7 @@ window.TrelloPowerUp.initialize(
           callback: function(t) {
             return t.popup({
               title: "Estimation",
-              url: 'estimate.html',
+              url: 'estimateQa.html',
             });
           }
         },
@@ -168,10 +168,21 @@ window.TrelloPowerUp.initialize(
           callback: function(t) {
             return t.popup({
               title: "Estimation",
-              url: 'estimate.html',
+              url: 'estimateGp.html',
             });
           }
-        },]
+        },
+        {
+          title: 'Estimativa UX-UI',
+          text: 'Restante: 0',
+          color: estimate ? null : 'green',
+          callback: function(t) {
+            return t.popup({
+              title: "Estimation",
+              url: 'estimateUx.html',
+            });
+          }
+        }]
       });
     },
     'show-settings': t => {
