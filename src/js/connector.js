@@ -141,8 +141,8 @@ window.TrelloPowerUp.initialize(
       .then(function(estimate) {
         return [{
           title: 'Estimativa DEV',
-          text: estimate || 'No Estimate!',
-          color: estimate ? null : 'red',
+          text: 'Restante: 5',
+          color: estimate ? null : 'blue',
           callback: function(t) {
             return t.popup({
               title: "Estimation",
@@ -160,7 +160,18 @@ window.TrelloPowerUp.initialize(
               url: 'estimate.html',
             });
           }
-        }]
+        },
+        {
+          title: 'Estimativa GP',
+          text: 'Restante: 0',
+          color: estimate ? null : 'green',
+          callback: function(t) {
+            return t.popup({
+              title: "Estimation",
+              url: 'estimate.html',
+            });
+          }
+        },]
       });
     },
     'show-settings': t => {
