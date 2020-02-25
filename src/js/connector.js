@@ -96,9 +96,9 @@ const getEstimateBadgesDetails = (t, opts) =>
     const badgeEstimateDev = {
       dynamic(t) {
         return {
-          icon: remainingDev ? GREY_ROCKET_ICON : WHITE_ROCKET_ICON,
-          text: remainingDev || 'No Estimate!',
-          color: remainingDev ? null : 'red',
+          icon: isEmpty(remainingDev) ? WHITE_ROCKET_ICON: GREY_ROCKET_ICON,
+          text: remainingDev || 'Não estimado',
+          color: isEmpty(remainingUx) ? 'red' : remainingUx === "0" ? 'green' : 'blue',
         };
       },
     };
@@ -106,9 +106,9 @@ const getEstimateBadgesDetails = (t, opts) =>
     const badgeEstimateQa = {
       dynamic(t) {
         return {
-          icon: remainingQa ? GREY_ROCKET_ICON : WHITE_ROCKET_ICON,
-          text: remainingQa || 'No Estimate!',
-          color: remainingQa ? null : 'red',
+          icon: isEmpty(remainingQa) ? WHITE_ROCKET_ICON: GREY_ROCKET_ICON,
+          text: remainingQa || 'Não estimado',
+          color: isEmpty(remainingUx) ? 'red' : remainingUx === "0" ? 'green' : 'blue',
         };
       },
     };
@@ -116,9 +116,9 @@ const getEstimateBadgesDetails = (t, opts) =>
     const badgeEstimateGp = {
       dynamic(t) {
         return {
-          icon: remainingGp ? GREY_ROCKET_ICON : WHITE_ROCKET_ICON,
-          text: remainingGp || 'No Estimate!',
-          color: remainingGp ? null : 'red',
+          icon: isEmpty(remainingGp) ? WHITE_ROCKET_ICON: GREY_ROCKET_ICON,
+          text: remainingGp || 'Não estimado',
+          color: isEmpty(remainingUx) ? 'red' : remainingUx === "0" ? 'green' : 'blue',
         };
       },
     };
@@ -126,9 +126,9 @@ const getEstimateBadgesDetails = (t, opts) =>
     const badgeEstimateUx = {
       dynamic(t) {
         return {
-          icon: remainingUx ? GREY_ROCKET_ICON : WHITE_ROCKET_ICON,
-          text: remainingUx || 'No Estimate!',
-          color: remainingUx ? null : 'red',
+          icon: isEmpty(remainingUx) ? WHITE_ROCKET_ICON: GREY_ROCKET_ICON,
+          text: remainingUx || 'Não estimado',
+          color: isEmpty(remainingUx) ? 'red' : remainingUx === "0" ? 'green' : 'blue',
         };
       },
     };
