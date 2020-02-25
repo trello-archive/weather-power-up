@@ -1,8 +1,3 @@
-import { defaultUnitForLocale, celsiusToFahrenheit, kphToMph } from './modules/util';
-import fetchWeatherData from './modules/api';
-import getConditionKey from './modules/conditions-map';
-import localizationSettings from './modules/localizationSettings';
-
 const { Promise } = window.TrelloPowerUp;
 const REFRESH_INTERVAL = 1800;
 
@@ -192,8 +187,5 @@ window.TrelloPowerUp.initialize(
         height: 281,
       });
     },
-  },
-  {
-    localization: localizationSettings,
   }
 );
