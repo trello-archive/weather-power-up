@@ -180,7 +180,7 @@ window.TrelloPowerUp.initialize(
         // }]
 
         const badgeEstimateDev = {
-          dynamic(trello) {
+          dynamic(t) {
             return {
               title: 'Estimativa DEV',
               text: remainingDev || 'Não estimado',
