@@ -8,53 +8,12 @@ const getWeatherBadges = (t, opts) =>
     t.get('card', 'shared', 'remainingGp'),
     t.get('card', 'shared', 'remainingUx')
   ]).then(([remainingDev, remainingQa, remainingGp, remainingUx]) => {
-    console.log('remainingDev1: ' + remainingDev);
-    console.log('remainingQa1: ' + remainingQa);
-    console.log('remainingGp1: ' + remainingGp);
-    console.log('remainingUx1: ' + remainingUx);
-    // return [{
-
-    // },
-    // {
-    //   title: 'Estimativa QA',
-    //   text: remainingQa || 'Não Estimado',
-    //   // color: remainingQa === undefined ? 'red' : remainingQa === 0 ? 'grenn' : 'blue',
-    //   callback: function (t) {
-    //     return t.popup({
-    //       title: "Estimativa QA",
-    //       url: 'estimateQa.html',
-    //     });
-    //   }
-    // },
-    // {
-    //   title: 'Estimativa GP',
-    //   text: remainingGp || 'Não estimado',
-    //   // color: remainingGp === undefined ? 'red' : remainingGp === 0 ? 'grenn' : 'blue',
-    //   callback: function (t) {
-    //     return t.popup({
-    //       title: "Estimativa GP",
-    //       url: 'estimateGp.html',
-    //     });
-    //   }
-    // },
-    // {
-    //   title: 'Estimativa UX-UI',
-    //   text: remainingUx || 'Não estimado',
-    //   // color: remainingUx === undefined ? 'red' : remainingUx === 0 ? 'grenn' : 'blue',
-    //   callback: function (t) {
-    //     return t.popup({
-    //       title: "Estimativa UX-UI",
-    //       url: 'estimateUx.html',
-    //     });
-    //   }
-    // }]
-
     const badgeEstimateDev = {
       dynamic(t) {
         return {
           title: 'Estimativa DEV',
           text: remainingDev || 'Não estimado',
-          color: remainingDev === undefined ? 'red' : remainingDev === 0 ? 'grenn' : 'blue',
+          color: remainingDev === undefined ? 'red' : remainingDev === 0 ? 'green' : 'blue',
           callback: function (t) {
             return t.popup({
               title: "Estimativa Dev",
@@ -65,9 +24,60 @@ const getWeatherBadges = (t, opts) =>
       },
     };
 
+    const badgeEstimateQa = {
+      dynamic(t) {
+        return {
+          title: 'Estimativa QA',
+          text: remainingQa || 'Não estimado',
+          color: remainingQa === undefined ? 'red' : remainingQa === 0 ? 'green' : 'blue',
+          callback: function (t) {
+            return t.popup({
+              title: "Estimativa QA",
+              url: 'estimateQa.html',
+            });
+          }
+        };
+      },
+    };
+
+    const badgeEstimateGp = {
+      dynamic(t) {
+        return {
+          title: 'Estimativa GP',
+          text: remainingGp || 'Não estimado',
+          color: remainingGp === undefined ? 'red' : remainingGp === 0 ? 'green' : 'blue',
+          callback: function (t) {
+            return t.popup({
+              title: "Estimativa GP",
+              url: 'estimateGp.html',
+            });
+          }
+        };
+      },
+    };
+
+    const badgeEstimateUx = {
+      dynamic(t) {
+        return {
+          title: 'Estimativa UX-UI',
+          text: remainingUx || 'Não estimado',
+          color: remainingUx === undefined ? 'red' : remainingUx === 0 ? 'green' : 'blue',
+          callback: function (t) {
+            return t.popup({
+              title: "Estimativa UX-UI",
+              url: 'estimateUx.html',
+            });
+          }
+        };
+      },
+    };
+
     let badges = [];
 
-    badges.push(badgeEstimateDev)
+    badges.push(badgeEstimateDev);
+    badges.push(badgeEstimateQa);
+    badges.push(badgeEstimateGp);
+    badges.push(badgeEstimateUx);
     return badges;
   });
 
