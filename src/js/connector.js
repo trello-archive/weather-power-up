@@ -1,7 +1,7 @@
 const { Promise } = window.TrelloPowerUp;
 const REFRESH_INTERVAL = 1800;
 
-const getEstimateBadges = (t, opts) =>
+const getEstimateBadgesDetails = (t, opts) =>
   Promise.all([
     t.get('card', 'shared', 'remainingDev'),
     t.get('card', 'shared', 'remainingQa'),
@@ -83,7 +83,7 @@ const getEstimateBadges = (t, opts) =>
     return badges;
   });
 
-const getEstimateBadgesDetails = (t, opts) =>
+const getEstimateBadges = (t, opts) =>
   Promise.all([
     t.get('card', 'shared', 'remainingDev'),
     t.get('card', 'shared', 'remainingQa'),
