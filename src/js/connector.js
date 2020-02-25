@@ -80,11 +80,6 @@ const getEstimateBadges = (t, opts) =>
     badges.push(badgeEstimateGp);
     badges.push(badgeEstimateUx);
 
-    document.getElementsByClassName('card-detail-badge').forEach.call(els, function (el) {
-      debugger;
-      el.style = "text-align: center";
-    });
-
     return badges;
   });
 
