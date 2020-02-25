@@ -149,13 +149,8 @@ window.TrelloPowerUp.initialize(
               url: 'estimate.html',
             });
           }
-        }]
-      });
-    },
-    'card-detail-badges': function(t, options) {
-      return t.get('card', 'shared', 'estimate')
-      .then(function(estimate) {
-        return [{
+        },
+        {
           title: 'Estimativa QA',
           text: estimate || 'No Estimate!',
           color: estimate ? null : 'red',
