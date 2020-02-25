@@ -150,6 +150,10 @@ window.TrelloPowerUp.initialize(
         remainingQa1 = remainingQa;
         remainingGp1 = remainingGp;
         remainingUx1 = remainingUx;
+        console.log('remainingDev1: ' + remainingDev1);
+        console.log('remainingQa1: ' + remainingQa1);
+        console.log('remainingGp1: ' + remainingGp1);
+        console.log('remainingUx1: ' + remainingUx1);
       });
 
       return [{
