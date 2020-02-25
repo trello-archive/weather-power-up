@@ -96,7 +96,7 @@ const getEstimateBadgesDetails = (t, opts) =>
     const badgeEstimateDev = {
       dynamic(t) {
         return {
-          icon: isEmpty(remainingDev) ? WHITE_ROCKET_ICON: GREY_ROCKET_ICON,
+          icon: isEmpty(remainingDev) ? WHITE_ROCKET_ICON : GREY_ROCKET_ICON,
           text: remainingDev || 'Não estimado',
           color: isEmpty(remainingUx) ? 'red' : remainingUx === "0" ? 'green' : 'blue',
         };
@@ -106,7 +106,7 @@ const getEstimateBadgesDetails = (t, opts) =>
     const badgeEstimateQa = {
       dynamic(t) {
         return {
-          icon: isEmpty(remainingQa) ? WHITE_ROCKET_ICON: GREY_ROCKET_ICON,
+          icon: isEmpty(remainingQa) ? WHITE_ROCKET_ICON : GREY_ROCKET_ICON,
           text: remainingQa || 'Não estimado',
           color: isEmpty(remainingUx) ? 'red' : remainingUx === "0" ? 'green' : 'blue',
         };
@@ -116,8 +116,8 @@ const getEstimateBadgesDetails = (t, opts) =>
     const badgeEstimateGp = {
       dynamic(t) {
         return {
-          title: 'GP',
-          //icon: isEmpty(remainingGp) ? WHITE_ROCKET_ICON: GREY_ROCKET_ICON,
+          // title: 'GP',
+          icon: isEmpty(remainingGp) ? WHITE_ROCKET_ICON: GREY_ROCKET_ICON,
           text: remainingGp || 'Não estimado',
           color: isEmpty(remainingUx) ? 'red' : remainingUx === "0" ? 'green' : 'blue',
         };
@@ -127,7 +127,7 @@ const getEstimateBadgesDetails = (t, opts) =>
     const badgeEstimateUx = {
       dynamic(t) {
         return {
-          icon: isEmpty(remainingUx) ? WHITE_ROCKET_ICON: GREY_ROCKET_ICON,
+          icon: isEmpty(remainingUx) ? WHITE_ROCKET_ICON : GREY_ROCKET_ICON,
           text: remainingUx || 'Não estimado',
           color: isEmpty(remainingUx) ? 'red' : remainingUx === "0" ? 'green' : 'blue',
         };
