@@ -131,54 +131,77 @@ window.TrelloPowerUp.initialize(
           }];
         });
     },
-    'card-detail-badges': function(t, options) {
-      return t.get('card', 'shared', 'estimate')
-      .then(function(estimate) {
-        return [{
-          title: 'Estimativa DEV',
-          text: 'Restante: 5',
-          color: estimate ? null : 'blue',
-          callback: function(t) {
-            return t.popup({
-              title: "Estimation",
-              url: 'estimateDev.html',
-            });
-          }
-        },
-        {
-          title: 'Estimativa QA',
-          text: estimate || 'No Estimate!',
-          color: estimate ? null : 'red',
-          callback: function(t) {
-            return t.popup({
-              title: "Estimation",
-              url: 'estimateQa.html',
-            });
-          }
-        },
-        {
-          title: 'Estimativa GP',
-          text: 'Restante: 0',
-          color: estimate ? null : 'green',
-          callback: function(t) {
-            return t.popup({
-              title: "Estimation",
-              url: 'estimateGp.html',
-            });
-          }
-        },
-        {
-          title: 'Estimativa UX-UI',
-          text: 'Restante: 0',
-          color: estimate ? null : 'green',
-          callback: function(t) {
-            return t.popup({
-              title: "Estimation",
-              url: 'estimateUx.html',
-            });
-          }
-        }]
-      });
+    'card-detail-badges': function (t, options) {
+      let remainingDev;
+      let remainingQa;
+      let remainingGp;
+      let remainingUx;
+      return t.get('card', 'shared', 'remainingDev')
+        .then(function (remainingDev) {
+          remainingDev = remainingDev;
+        })
+        .then(function () {
+          t.get('card', 'shared', 'remainingQa')
+            .then(function (remainingQa) {
+              remainingQa = remainingQa;
+            }).then(function () {
+              t.get('card', 'shared', 'remainingGp')
+                .then(function (remainingGp) {
+                  remainingGp = remainingGp
+                }).then(function () {
+                  t.get('card', 'shared', 'remainingUx')
+                    .then(function (remainingUx) {
+                      remainingUx = remainingUx;
+                    })
+                    .then(function () {
+                      return [{
+                        title: 'Estimativa DEV',
+                        text: remainingDev || 'Não estimado',
+                        color: remainingDev === null ? 'red' : remainingDev === 0 ? 'grenn' : 'blue',
+                        callback: function (t) {
+                          return t.popup({
+                            title: "Estimativa Dev",
+                            url: 'estimateDev.html',
+                          });
+                        }
+                      },
+                      {
+                        title: 'Estimativa QA',
+                        text: remainingQa || 'Não Estimado',
+                        color: remainingQa === null ? 'red' : remainingQa === 0 ? 'grenn' : 'blue',
+                        callback: function (t) {
+                          return t.popup({
+                            title: "Estimativa QA",
+                            url: 'estimateQa.html',
+                          });
+                        }
+                      },
+                      {
+                        title: 'Estimativa GP',
+                        text: remainingGp || 'Não estimado',
+                        color: remainingGp === null ? 'red' : remainingGp === 0 ? 'grenn' : 'blue',
+                        callback: function (t) {
+                          return t.popup({
+                            title: "Estimativa GP",
+                            url: 'estimateGp.html',
+                          });
+                        }
+                      },
+                      {
+                        title: 'Estimativa UX-UI',
+                        text: remainingUx || 'Não estimado',
+                        color: remainingUx === null ? 'red' : remainingUx === 0 ? 'grenn' : 'blue',
+                        callback: function (t) {
+                          return t.popup({
+                            title: "Estimativa UX-UI",
+                            url: 'estimateUx.html',
+                          });
+                        }
+                      }]
+                    });
+                })
+            })
+        });
     },
     'show-settings': t => {
       return t.popup({
