@@ -145,7 +145,7 @@ window.TrelloPowerUp.initialize(
         return [{
           title: 'Estimativa DEV',
           text: remainingDev || 'Não estimado',
-          color: remainingDev === null ? 'red' : remainingDev === 0 ? 'grenn' : 'blue',
+          color: remainingDev === undefined ? 'red' : remainingDev === 0 ? 'grenn' : 'blue',
           callback: function (t) {
             return t.popup({
               title: "Estimativa Dev",
@@ -156,7 +156,7 @@ window.TrelloPowerUp.initialize(
         {
           title: 'Estimativa QA',
           text: remainingQa || 'Não Estimado',
-          color: remainingQa === null ? 'red' : remainingQa === 0 ? 'grenn' : 'blue',
+          color: remainingQa === undefined ? 'red' : remainingQa === 0 ? 'grenn' : 'blue',
           callback: function (t) {
             return t.popup({
               title: "Estimativa QA",
@@ -167,7 +167,7 @@ window.TrelloPowerUp.initialize(
         {
           title: 'Estimativa GP',
           text: remainingGp || 'Não estimado',
-          color: remainingGp === null ? 'red' : remainingGp === 0 ? 'grenn' : 'blue',
+          color: remainingGp === undefined ? 'red' : remainingGp === 0 ? 'grenn' : 'blue',
           callback: function (t) {
             return t.popup({
               title: "Estimativa GP",
@@ -178,7 +178,7 @@ window.TrelloPowerUp.initialize(
         {
           title: 'Estimativa UX-UI',
           text: remainingUx || 'Não estimado',
-          color: remainingUx === null ? 'red' : remainingUx === 0 ? 'grenn' : 'blue',
+          color: remainingUx === undefined ? 'red' : remainingUx === 0 ? 'grenn' : 'blue',
           callback: function (t) {
             return t.popup({
               title: "Estimativa UX-UI",
