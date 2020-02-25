@@ -178,29 +178,29 @@ window.TrelloPowerUp.initialize(
         //     });
         //   }
         // }]
+
+        const badgeEstimateDev = {
+          dynamic(trello) {
+            return {
+              title: 'Estimativa DEV',
+              text: remainingDev || 'Não estimado',
+              // color: remainingDev === undefined ? 'red' : remainingDev === 0 ? 'grenn' : 'blue',
+              callback: function (t) {
+                return t.popup({
+                  title: "Estimativa Dev",
+                  url: 'estimateDev.html',
+                });
+              }
+            };
+          },
+        };
+
+
+        let badges = [];
+
+        badges.push(badgeEstimateDev)
+        return badges;
       });
-
-      const badgeEstimateDev = {
-        dynamic(trello) {
-          return {
-            title: 'Estimativa DEV',
-            text: remainingDev || 'Não estimado',
-            // color: remainingDev === undefined ? 'red' : remainingDev === 0 ? 'grenn' : 'blue',
-            callback: function (t) {
-              return t.popup({
-                title: "Estimativa Dev",
-                url: 'estimateDev.html',
-              });
-            }
-          };
-        },
-      };
-
-      let badges = [];
-
-      badges.push(badgeEstimateDev)
-
-      return badges;
     },
     'show-settings': t => {
       return t.popup({
