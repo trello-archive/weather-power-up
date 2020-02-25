@@ -132,83 +132,68 @@ window.TrelloPowerUp.initialize(
         });
     },
     'card-detail-badges': function (t, options) {
-      let remainingDev;
-      let remainingQa;
-      let remainingGp;
-      let remainingUx;
-      return t.get('card', 'shared', 'remainingDev')
-        .then(function (remainingDev) {
-          remainingDev = remainingDev;
-        })
-        .then(function () {
-          t.get('card', 'shared', 'remainingQa')
-            .then(function (remainingQa) {
-              remainingQa = remainingQa;
-            }).then(function () {
-              t.get('card', 'shared', 'remainingGp')
-                .then(function (remainingGp) {
-                  remainingGp = remainingGp
-                }).then(function () {
-                  t.get('card', 'shared', 'remainingUx')
-                    .then(function (remainingUx) {
-                      remainingUx = remainingUx;
-                    })
-                    .then(function () {
-                      return [{
-                        title: 'Estimativa DEV',
-                        text: remainingDev || 'Não estimado',
-                        color: remainingDev === null ? 'red' : remainingDev === 0 ? 'grenn' : 'blue',
-                        callback: function (t) {
-                          return t.popup({
-                            title: "Estimativa Dev",
-                            url: 'estimateDev.html',
-                          });
-                        }
-                      },
-                      {
-                        title: 'Estimativa QA',
-                        text: remainingQa || 'Não Estimado',
-                        color: remainingQa === null ? 'red' : remainingQa === 0 ? 'grenn' : 'blue',
-                        callback: function (t) {
-                          return t.popup({
-                            title: "Estimativa QA",
-                            url: 'estimateQa.html',
-                          });
-                        }
-                      },
-                      {
-                        title: 'Estimativa GP',
-                        text: remainingGp || 'Não estimado',
-                        color: remainingGp === null ? 'red' : remainingGp === 0 ? 'grenn' : 'blue',
-                        callback: function (t) {
-                          return t.popup({
-                            title: "Estimativa GP",
-                            url: 'estimateGp.html',
-                          });
-                        }
-                      },
-                      {
-                        title: 'Estimativa UX-UI',
-                        text: remainingUx || 'Não estimado',
-                        color: remainingUx === null ? 'red' : remainingUx === 0 ? 'grenn' : 'blue',
-                        callback: function (t) {
-                          return t.popup({
-                            title: "Estimativa UX-UI",
-                            url: 'estimateUx.html',
-                          });
-                        }
-                      }]
-                    });
-                })
-            })
-        });
-    },
-    'show-settings': t => {
-      return t.popup({
-        title: t.localizeKey('weather-settings'),
-        url: '♦settings.html',
-        height: 281,
+      Promise.all([
+        t.get('card', 'shared', 'remainingDev'),
+        t.get('card', 'shared', 'remainingQa'),
+        t.get('card', 'shared', 'remainingGp'),
+        t.get('card', 'shared', 'remainingUx')
+      ]).then(([remainingDev, remainingQa, remainingGp, remainingUx]) => {
+        console.log('remainingDev: ' + remainingDev);
+        console.log('remainingQa: ' + remainingQa);
+        console.log('remainingGp: ' + remainingGp);
+        console.log('remainingUx: ' + remainingUx);
+        return [{
+          title: 'Estimativa DEV',
+          text: remainingDev || 'Não estimado',
+          color: remainingDev === null ? 'red' : remainingDev === 0 ? 'grenn' : 'blue',
+          callback: function (t) {
+            return t.popup({
+              title: "Estimativa Dev",
+              url: 'estimateDev.html',
+            });
+          }
+        },
+        {
+          title: 'Estimativa QA',
+          text: remainingQa || 'Não Estimado',
+          color: remainingQa === null ? 'red' : remainingQa === 0 ? 'grenn' : 'blue',
+          callback: function (t) {
+            return t.popup({
+              title: "Estimativa QA",
+              url: 'estimateQa.html',
+            });
+          }
+        },
+        {
+          title: 'Estimativa GP',
+          text: remainingGp || 'Não estimado',
+          color: remainingGp === null ? 'red' : remainingGp === 0 ? 'grenn' : 'blue',
+          callback: function (t) {
+            return t.popup({
+              title: "Estimativa GP",
+              url: 'estimateGp.html',
+            });
+          }
+        },
+        {
+          title: 'Estimativa UX-UI',
+          text: remainingUx || 'Não estimado',
+          color: remainingUx === null ? 'red' : remainingUx === 0 ? 'grenn' : 'blue',
+          callback: function (t) {
+            return t.popup({
+              title: "Estimativa UX-UI",
+              url: 'estimateUx.html',
+            });
+          }
+        }]
       });
-    },
+  },
+  'show-settings': t => {
+    return t.popup({
+      title: t.localizeKey('weather-settings'),
+      url: '♦settings.html',
+      height: 281,
+    });
+  },
   }
 );
