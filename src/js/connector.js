@@ -98,7 +98,7 @@ const getEstimateBadges = (t, opts) =>
         return {
           icon: isEmpty(remainingDev) ? WHITE_ROCKET_ICON : GREY_ROCKET_ICON,
           text: remainingDev || 'Não estimado',
-          color: isEmpty(remainingUx) ? 'red' : remainingUx === "0" ? 'green' : 'blue',
+          color: isEmpty(remainingDev) ? 'red' : remainingDev === "0" ? 'green' : 'blue',
         };
       },
     };
@@ -108,7 +108,7 @@ const getEstimateBadges = (t, opts) =>
         return {
           icon: isEmpty(remainingQa) ? WHITE_ROCKET_ICON : GREY_ROCKET_ICON,
           text: remainingQa || 'Não estimado',
-          color: isEmpty(remainingUx) ? 'red' : remainingUx === "0" ? 'green' : 'blue',
+          color: isEmpty(remainingQa) ? 'red' : remainingQa === "0" ? 'green' : 'blue',
         };
       },
     };
@@ -119,7 +119,7 @@ const getEstimateBadges = (t, opts) =>
           // title: 'GP',
           icon: isEmpty(remainingGp) ? WHITE_ROCKET_ICON : GREY_ROCKET_ICON,
           text: remainingGp || 'Não estimado',
-          color: isEmpty(remainingUx) ? 'red' : remainingUx === "0" ? 'green' : 'blue',
+          color: isEmpty(remainingGp) ? 'red' : remainingGp === "0" ? 'green' : 'blue',
         };
       },
     };
