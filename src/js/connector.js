@@ -1,106 +1,73 @@
 const { Promise } = window.TrelloPowerUp;
 const REFRESH_INTERVAL = 1800;
 
-const showBadge = (command, type, prefs) => {
-  if (command === 'card-badges') {
-    return prefs[`${type}-front`] !== false;
-  }
-  if (command === 'card-detail-badges') {
-    return prefs[`${type}-back`] !== false;
-  }
-
-  throw new Error('Unknown command', command);
-};
-
 const getWeatherBadges = (t, opts) =>
   Promise.all([
-    t.card('coordinates'),
-    t.get('member', 'private', 'units', defaultUnitForLocale(opts.locale)),
-    t.get('board', 'shared'),
-  ]).then(([card, units, prefs]) => {
-    if (!card.coordinates) {
-      return [];
-    }
+    t.get('card', 'shared', 'remainingDev'),
+    t.get('card', 'shared', 'remainingQa'),
+    t.get('card', 'shared', 'remainingGp'),
+    t.get('card', 'shared', 'remainingUx')
+  ]).then(([remainingDev, remainingQa, remainingGp, remainingUx]) => {
+    console.log('remainingDev1: ' + remainingDev);
+    console.log('remainingQa1: ' + remainingQa);
+    console.log('remainingGp1: ' + remainingGp);
+    console.log('remainingUx1: ' + remainingUx);
+    // return [{
 
-    const tempBadge = {
-      dynamic(trello) {
-        return fetchWeatherData(trello).then(weatherData => {
-          let { temp } = weatherData;
-          if (units === 'metric') {
-            temp = `${temp.toFixed()} °C`;
-          } else {
-            temp = `${celsiusToFahrenheit(temp).toFixed()} °F`;
-          }
-          return {
-            title: "Teste",
-            text: temp,
-            refresh: REFRESH_INTERVAL,
-          };
-        });
-      },
-    };
+    // },
+    // {
+    //   title: 'Estimativa QA',
+    //   text: remainingQa || 'Não Estimado',
+    //   // color: remainingQa === undefined ? 'red' : remainingQa === 0 ? 'grenn' : 'blue',
+    //   callback: function (t) {
+    //     return t.popup({
+    //       title: "Estimativa QA",
+    //       url: 'estimateQa.html',
+    //     });
+    //   }
+    // },
+    // {
+    //   title: 'Estimativa GP',
+    //   text: remainingGp || 'Não estimado',
+    //   // color: remainingGp === undefined ? 'red' : remainingGp === 0 ? 'grenn' : 'blue',
+    //   callback: function (t) {
+    //     return t.popup({
+    //       title: "Estimativa GP",
+    //       url: 'estimateGp.html',
+    //     });
+    //   }
+    // },
+    // {
+    //   title: 'Estimativa UX-UI',
+    //   text: remainingUx || 'Não estimado',
+    //   // color: remainingUx === undefined ? 'red' : remainingUx === 0 ? 'grenn' : 'blue',
+    //   callback: function (t) {
+    //     return t.popup({
+    //       title: "Estimativa UX-UI",
+    //       url: 'estimateUx.html',
+    //     });
+    //   }
+    // }]
 
-    const windBadge = {
-      dynamic(trello) {
-        return fetchWeatherData(trello).then(weatherData => {
-          let windSpeed = weatherData.wind;
-          if (units === 'metric') {
-            windSpeed = `🌬️ ${windSpeed.toFixed()} kph`;
-          } else {
-            windSpeed = `🌬️ ${kphToMph(windSpeed).toFixed()} mph`;
-          }
-          return {
-            title: trello.localizeKey('wind-speed'),
-            text: windSpeed,
-            refresh: REFRESH_INTERVAL,
-          };
-        });
-      },
-    };
-
-    const conditionsBadge = {
-      dynamic(trello) {
-        return fetchWeatherData(trello).then(weatherData => {
-          const conditionKey = getConditionKey(weatherData.conditions);
-          return {
-            title: trello.localizeKey('conditions'),
-            icon: `https://openweathermap.org/img/w/${weatherData.icon}.png`,
-            text: conditionKey ? trello.localizeKey(conditionKey) : '',
-            refresh: REFRESH_INTERVAL,
-          };
-        });
-      },
-    };
-
-    const testBadge = {
-      dynamic(trello) {
+    const badgeEstimateDev = {
+      dynamic(t) {
         return {
-          title: trello.localizeKey('test-dev'),
-          text: 'texto de teste',
-          refresh: REFRESH_INTERVAL,
+          title: 'Estimativa DEV',
+          text: remainingDev || 'Não estimado',
+          // color: remainingDev === undefined ? 'red' : remainingDev === 0 ? 'grenn' : 'blue',
+          callback: function (t) {
+            return t.popup({
+              title: "Estimativa Dev",
+              url: 'estimateDev.html',
+            });
+          }
         };
       },
     };
 
     let badges = [];
 
-    if (!prefs || typeof prefs !== 'object') {
-      // default to all badges
-      badges = [tempBadge, windBadge, conditionsBadge, testBadge];
-    } else {
-      // there are some potential preferences
-      [
-        ['temp', tempBadge],
-        ['wind', windBadge],
-        ['conditions', conditionsBadge],
-        ['']
-      ].forEach(([type, badge]) => {
-        if (showBadge(t.getContext().command, type, prefs)) {
-          badges.push(badge);
-        }
-      });
-    }
-
+    badges.push(badgeEstimateDev)
     return badges;
   });
 
@@ -131,77 +98,7 @@ window.TrelloPowerUp.initialize(
           }];
         });
     },
-    'card-detail-badges': function (t, options) {
-      Promise.all([
-        t.get('card', 'shared', 'remainingDev'),
-        t.get('card', 'shared', 'remainingQa'),
-        t.get('card', 'shared', 'remainingGp'),
-        t.get('card', 'shared', 'remainingUx')
-      ]).then(([remainingDev, remainingQa, remainingGp, remainingUx]) => {
-        console.log('remainingDev1: ' + remainingDev);
-        console.log('remainingQa1: ' + remainingQa);
-        console.log('remainingGp1: ' + remainingGp);
-        console.log('remainingUx1: ' + remainingUx);
-        // return [{
-
-        // },
-        // {
-        //   title: 'Estimativa QA',
-        //   text: remainingQa || 'Não Estimado',
-        //   // color: remainingQa === undefined ? 'red' : remainingQa === 0 ? 'grenn' : 'blue',
-        //   callback: function (t) {
-        //     return t.popup({
-        //       title: "Estimativa QA",
-        //       url: 'estimateQa.html',
-        //     });
-        //   }
-        // },
-        // {
-        //   title: 'Estimativa GP',
-        //   text: remainingGp || 'Não estimado',
-        //   // color: remainingGp === undefined ? 'red' : remainingGp === 0 ? 'grenn' : 'blue',
-        //   callback: function (t) {
-        //     return t.popup({
-        //       title: "Estimativa GP",
-        //       url: 'estimateGp.html',
-        //     });
-        //   }
-        // },
-        // {
-        //   title: 'Estimativa UX-UI',
-        //   text: remainingUx || 'Não estimado',
-        //   // color: remainingUx === undefined ? 'red' : remainingUx === 0 ? 'grenn' : 'blue',
-        //   callback: function (t) {
-        //     return t.popup({
-        //       title: "Estimativa UX-UI",
-        //       url: 'estimateUx.html',
-        //     });
-        //   }
-        // }]
-
-        const badgeEstimateDev = {
-          dynamic(t) {
-            return {
-              title: 'Estimativa DEV',
-              text: remainingDev || 'Não estimado',
-              // color: remainingDev === undefined ? 'red' : remainingDev === 0 ? 'grenn' : 'blue',
-              callback: function (t) {
-                return t.popup({
-                  title: "Estimativa Dev",
-                  url: 'estimateDev.html',
-                });
-              }
-            };
-          },
-        };
-
-
-        let badges = [];
-
-        badges.push(badgeEstimateDev)
-        return badges;
-      });
-    },
+    'card-detail-badges': getWeatherBadges,
     'show-settings': t => {
       return t.popup({
         title: t.localizeKey('weather-settings'),
