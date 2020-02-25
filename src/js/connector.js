@@ -54,7 +54,7 @@ const getWeatherBadges = (t, opts) =>
         return {
           title: 'Estimativa DEV',
           text: remainingDev || 'Não estimado',
-          // color: remainingDev === undefined ? 'red' : remainingDev === 0 ? 'grenn' : 'blue',
+          color: remainingDev === undefined ? 'red' : remainingDev === 0 ? 'grenn' : 'blue',
           callback: function (t) {
             return t.popup({
               title: "Estimativa Dev",
