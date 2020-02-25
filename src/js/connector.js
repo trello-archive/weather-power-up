@@ -13,7 +13,7 @@ const getWeatherBadges = (t, opts) =>
         return {
           title: 'Estimativa DEV',
           text: remainingDev || 'Não estimado',
-          color: remainingDev === undefined ? 'red' : remainingDev === 0 ? 'green' : 'blue',
+          color: remainingDev === undefined  || null || "" ? 'red' : remainingDev === 0 ? 'green' : 'blue',
           callback: function (t) {
             return t.popup({
               title: "Estimativa Dev",
@@ -29,7 +29,7 @@ const getWeatherBadges = (t, opts) =>
         return {
           title: 'Estimativa QA',
           text: remainingQa || 'Não estimado',
-          color: remainingQa === undefined ? 'red' : remainingQa === 0 ? 'green' : 'blue',
+          color: remainingQa === undefined  || null || "" ? 'red' : remainingQa === 0 ? 'green' : 'blue',
           callback: function (t) {
             return t.popup({
               title: "Estimativa QA",
@@ -45,7 +45,7 @@ const getWeatherBadges = (t, opts) =>
         return {
           title: 'Estimativa GP',
           text: remainingGp || 'Não estimado',
-          color: remainingGp === undefined ? 'red' : remainingGp === 0 ? 'green' : 'blue',
+          color: remainingGp === undefined  || null || "" ? 'red' : remainingGp === 0 ? 'green' : 'blue',
           callback: function (t) {
             return t.popup({
               title: "Estimativa GP",
@@ -61,7 +61,7 @@ const getWeatherBadges = (t, opts) =>
         return {
           title: 'Estimativa UX-UI',
           text: remainingUx || 'Não estimado',
-          color: remainingUx === undefined ? 'red' : remainingUx === 0 ? 'green' : 'blue',
+          color: remainingUx === undefined  || null || "" ? 'red' : remainingUx === 0 ? 'green' : 'blue',
           callback: function (t) {
             return t.popup({
               title: "Estimativa UX-UI",
