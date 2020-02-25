@@ -116,7 +116,8 @@ const getEstimateBadgesDetails = (t, opts) =>
     const badgeEstimateGp = {
       dynamic(t) {
         return {
-          icon: isEmpty(remainingGp) ? WHITE_ROCKET_ICON: GREY_ROCKET_ICON,
+          title: 'GP',
+          //icon: isEmpty(remainingGp) ? WHITE_ROCKET_ICON: GREY_ROCKET_ICON,
           text: remainingGp || 'Não estimado',
           color: isEmpty(remainingUx) ? 'red' : remainingUx === "0" ? 'green' : 'blue',
         };
