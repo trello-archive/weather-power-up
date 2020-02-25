@@ -132,74 +132,61 @@ window.TrelloPowerUp.initialize(
         });
     },
     'card-detail-badges': function (t, options) {
-      var remainingDev1;
-      var remainingQa1;
-      var remainingGp1;
-      var remainingUx1;
       Promise.all([
         t.get('card', 'shared', 'remainingDev'),
         t.get('card', 'shared', 'remainingQa'),
         t.get('card', 'shared', 'remainingGp'),
         t.get('card', 'shared', 'remainingUx')
       ]).then(([remainingDev, remainingQa, remainingGp, remainingUx]) => {
-        console.log('remainingDev: ' + remainingDev);
-        console.log('remainingQa: ' + remainingQa);
-        console.log('remainingGp: ' + remainingGp);
-        console.log('remainingUx: ' + remainingUx);
-        remainingDev1 = remainingDev;
-        remainingQa1 = remainingQa;
-        remainingGp1 = remainingGp;
-        remainingUx1 = remainingUx;
-        console.log('remainingDev1: ' + remainingDev1);
-        console.log('remainingQa1: ' + remainingQa1);
-        console.log('remainingGp1: ' + remainingGp1);
-        console.log('remainingUx1: ' + remainingUx1);
+        console.log('remainingDev1: ' + remainingDev);
+        console.log('remainingQa1: ' + remainingQa);
+        console.log('remainingGp1: ' + remainingGp);
+        console.log('remainingUx1: ' + remainingUx);
+        return [{
+          title: 'Estimativa DEV',
+          text: remainingDev || 'Não estimado',
+          // color: remainingDev === undefined ? 'red' : remainingDev === 0 ? 'grenn' : 'blue',
+          callback: function (t) {
+            return t.popup({
+              title: "Estimativa Dev",
+              url: 'estimateDev.html',
+            });
+          }
+        },
+        {
+          title: 'Estimativa QA',
+          text: remainingQa|| 'Não Estimado',
+          // color: remainingQa === undefined ? 'red' : remainingQa === 0 ? 'grenn' : 'blue',
+          callback: function (t) {
+            return t.popup({
+              title: "Estimativa QA",
+              url: 'estimateQa.html',
+            });
+          }
+        },
+        {
+          title: 'Estimativa GP',
+          text: remainingGp || 'Não estimado',
+          // color: remainingGp === undefined ? 'red' : remainingGp === 0 ? 'grenn' : 'blue',
+          callback: function (t) {
+            return t.popup({
+              title: "Estimativa GP",
+              url: 'estimateGp.html',
+            });
+          }
+        },
+        {
+          title: 'Estimativa UX-UI',
+          text: remainingUx || 'Não estimado',
+          // color: remainingUx === undefined ? 'red' : remainingUx === 0 ? 'grenn' : 'blue',
+          callback: function (t) {
+            return t.popup({
+              title: "Estimativa UX-UI",
+              url: 'estimateUx.html',
+            });
+          }
+        }]
       });
-
-      return [{
-        title: 'Estimativa DEV',
-        text: remainingDev1 || 'Não estimado',
-        // color: remainingDev === undefined ? 'red' : remainingDev === 0 ? 'grenn' : 'blue',
-        callback: function (t) {
-          return t.popup({
-            title: "Estimativa Dev",
-            url: 'estimateDev.html',
-          });
-        }
-      },
-      {
-        title: 'Estimativa QA',
-        text: remainingQa1 || 'Não Estimado',
-        // color: remainingQa === undefined ? 'red' : remainingQa === 0 ? 'grenn' : 'blue',
-        callback: function (t) {
-          return t.popup({
-            title: "Estimativa QA",
-            url: 'estimateQa.html',
-          });
-        }
-      },
-      {
-        title: 'Estimativa GP',
-        text: remainingGp1 || 'Não estimado',
-        // color: remainingGp === undefined ? 'red' : remainingGp === 0 ? 'grenn' : 'blue',
-        callback: function (t) {
-          return t.popup({
-            title: "Estimativa GP",
-            url: 'estimateGp.html',
-          });
-        }
-      },
-      {
-        title: 'Estimativa UX-UI',
-        text: remainingUx1 || 'Não estimado',
-        // color: remainingUx === undefined ? 'red' : remainingUx === 0 ? 'grenn' : 'blue',
-        callback: function (t) {
-          return t.popup({
-            title: "Estimativa UX-UI",
-            url: 'estimateUx.html',
-          });
-        }
-      }]
     },
     'show-settings': t => {
       return t.popup({
