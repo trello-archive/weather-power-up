@@ -103,16 +103,7 @@ window.TrelloPowerUp.initialize(
         }
       }];
     },
-    'card-badges': function (t, options) {
-      return t.get('card', 'shared', 'estimate')
-        .then(function (estimate) {
-          return [{
-            icon: estimate ? GREY_ROCKET_ICON : WHITE_ROCKET_ICON,
-            text: estimate || 'No Estimate!',
-            color: estimate ? null : 'red',
-          }];
-        });
-    },
+    'card-badges': getWeatherBadges,
     'card-detail-badges': getWeatherBadges,
     'show-settings': t => {
       return t.popup({
