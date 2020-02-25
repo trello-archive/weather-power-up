@@ -142,51 +142,65 @@ window.TrelloPowerUp.initialize(
         console.log('remainingQa1: ' + remainingQa);
         console.log('remainingGp1: ' + remainingGp);
         console.log('remainingUx1: ' + remainingUx);
-        return [{
-          title: 'Estimativa DEV',
-          text: remainingDev || 'Não estimado',
-          // color: remainingDev === undefined ? 'red' : remainingDev === 0 ? 'grenn' : 'blue',
-          callback: function (t) {
-            return t.popup({
-              title: "Estimativa Dev",
-              url: 'estimateDev.html',
-            });
-          }
-        },
-        {
-          title: 'Estimativa QA',
-          text: remainingQa|| 'Não Estimado',
-          // color: remainingQa === undefined ? 'red' : remainingQa === 0 ? 'grenn' : 'blue',
-          callback: function (t) {
-            return t.popup({
-              title: "Estimativa QA",
-              url: 'estimateQa.html',
-            });
-          }
-        },
-        {
-          title: 'Estimativa GP',
-          text: remainingGp || 'Não estimado',
-          // color: remainingGp === undefined ? 'red' : remainingGp === 0 ? 'grenn' : 'blue',
-          callback: function (t) {
-            return t.popup({
-              title: "Estimativa GP",
-              url: 'estimateGp.html',
-            });
-          }
-        },
-        {
-          title: 'Estimativa UX-UI',
-          text: remainingUx || 'Não estimado',
-          // color: remainingUx === undefined ? 'red' : remainingUx === 0 ? 'grenn' : 'blue',
-          callback: function (t) {
-            return t.popup({
-              title: "Estimativa UX-UI",
-              url: 'estimateUx.html',
-            });
-          }
-        }]
+        // return [{
+
+        // },
+        // {
+        //   title: 'Estimativa QA',
+        //   text: remainingQa || 'Não Estimado',
+        //   // color: remainingQa === undefined ? 'red' : remainingQa === 0 ? 'grenn' : 'blue',
+        //   callback: function (t) {
+        //     return t.popup({
+        //       title: "Estimativa QA",
+        //       url: 'estimateQa.html',
+        //     });
+        //   }
+        // },
+        // {
+        //   title: 'Estimativa GP',
+        //   text: remainingGp || 'Não estimado',
+        //   // color: remainingGp === undefined ? 'red' : remainingGp === 0 ? 'grenn' : 'blue',
+        //   callback: function (t) {
+        //     return t.popup({
+        //       title: "Estimativa GP",
+        //       url: 'estimateGp.html',
+        //     });
+        //   }
+        // },
+        // {
+        //   title: 'Estimativa UX-UI',
+        //   text: remainingUx || 'Não estimado',
+        //   // color: remainingUx === undefined ? 'red' : remainingUx === 0 ? 'grenn' : 'blue',
+        //   callback: function (t) {
+        //     return t.popup({
+        //       title: "Estimativa UX-UI",
+        //       url: 'estimateUx.html',
+        //     });
+        //   }
+        // }]
       });
+
+      const badgeEstimateDev = {
+        dynamic(trello) {
+          return {
+            title: 'Estimativa DEV',
+            text: remainingDev || 'Não estimado',
+            // color: remainingDev === undefined ? 'red' : remainingDev === 0 ? 'grenn' : 'blue',
+            callback: function (t) {
+              return t.popup({
+                title: "Estimativa Dev",
+                url: 'estimateDev.html',
+              });
+            }
+          };
+        },
+      };
+
+      let badges = [];
+
+      badges.push(badgeEstimateDev)
+
+      return badges;
     },
     'show-settings': t => {
       return t.popup({
