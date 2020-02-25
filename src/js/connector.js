@@ -83,9 +83,6 @@ const getEstimateBadges = (t, opts) =>
     return badges;
   });
 
-var GREY_ROCKET_ICON = 'https://cdn.glitch.com/c69415fd-f70e-4e03-b43b-98b8960cd616%2Frocket-ship-grey.png?1496162964717';
-var WHITE_ROCKET_ICON = 'https://cdn.glitch.com/c69415fd-f70e-4e03-b43b-98b8960cd616%2Fwhite-rocket-ship.png?1495811896182';
-
 const getEstimateBadgesDetails = (t, opts) =>
   Promise.all([
     t.get('card', 'shared', 'remainingDev'),
@@ -93,6 +90,9 @@ const getEstimateBadgesDetails = (t, opts) =>
     t.get('card', 'shared', 'remainingGp'),
     t.get('card', 'shared', 'remainingUx')
   ]).then(([remainingDev, remainingQa, remainingGp, remainingUx]) => {
+    var GREY_ROCKET_ICON = 'https://cdn.glitch.com/c69415fd-f70e-4e03-b43b-98b8960cd616%2Frocket-ship-grey.png?1496162964717';
+    var WHITE_ROCKET_ICON = 'https://cdn.glitch.com/c69415fd-f70e-4e03-b43b-98b8960cd616%2Fwhite-rocket-ship.png?1495811896182';
+
     const badgeEstimateDev = {
       dynamic(t) {
         return {
@@ -117,7 +117,7 @@ const getEstimateBadgesDetails = (t, opts) =>
       dynamic(t) {
         return {
           // title: 'GP',
-          icon: isEmpty(remainingGp) ? WHITE_ROCKET_ICON: GREY_ROCKET_ICON,
+          icon: isEmpty(remainingGp) ? WHITE_ROCKET_ICON : GREY_ROCKET_ICON,
           text: remainingGp || 'Não estimado',
           color: isEmpty(remainingUx) ? 'red' : remainingUx === "0" ? 'green' : 'blue',
         };
