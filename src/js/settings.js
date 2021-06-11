@@ -6,15 +6,15 @@ const t = window.TrelloPowerUp.iframe({
 });
 
 // setup event listeners on radio buttons to save preferences when they change
-document.querySelectorAll('input[type=radio][name=units]').forEach(radioBtn => {
-  radioBtn.addEventListener('change', e => {
+document.querySelectorAll('input[type=radio][name=units]').forEach((radioBtn) => {
+  radioBtn.addEventListener('change', (e) => {
     t.set('member', 'private', 'units', e.target.value);
   });
 });
 
 // setup event listeners on the display settings checkboxes
-document.querySelectorAll('input[type=checkbox]').forEach(checkbox => {
-  checkbox.addEventListener('change', e => {
+document.querySelectorAll('input[type=checkbox]').forEach((checkbox) => {
+  checkbox.addEventListener('change', (e) => {
     if (e.target.checked) {
       t.remove('board', 'shared', e.target.value);
     } else {
@@ -25,7 +25,7 @@ document.querySelectorAll('input[type=checkbox]').forEach(checkbox => {
 
 t.render(() => {
   t.localizeNode(document.body);
-  return t.getAll().then(data => {
+  return t.getAll().then((data) => {
     // select the currently selected unit preference
     let unitPreference = defaultUnitForLocale(window.locale);
     if (data && data.member && data.member.private && data.member.private.units) {
@@ -36,7 +36,7 @@ t.render(() => {
       unitBtn.checked = true;
     }
     // select the currently selected display preferences
-    document.querySelectorAll('input[type=checkbox]').forEach(checkbox => {
+    document.querySelectorAll('input[type=checkbox]').forEach((checkbox) => {
       /* eslint-disable no-param-reassign */
       if (data && data.board && data.board.shared && data.board.shared[checkbox.value] === false) {
         checkbox.checked = false;

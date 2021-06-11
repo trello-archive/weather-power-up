@@ -30,7 +30,7 @@ const getWeatherBadges = (t, opts) =>
 
     const tempBadge = {
       dynamic(trello) {
-        return fetchWeatherData(trello).then(weatherData => {
+        return fetchWeatherData(trello).then((weatherData) => {
           let { temp } = weatherData;
           if (units === 'metric') {
             temp = `${temp.toFixed()} °C`;
@@ -48,7 +48,7 @@ const getWeatherBadges = (t, opts) =>
 
     const windBadge = {
       dynamic(trello) {
-        return fetchWeatherData(trello).then(weatherData => {
+        return fetchWeatherData(trello).then((weatherData) => {
           let windSpeed = weatherData.wind;
           if (units === 'metric') {
             windSpeed = `🌬️ ${windSpeed.toFixed()} kph`;
@@ -66,7 +66,7 @@ const getWeatherBadges = (t, opts) =>
 
     const conditionsBadge = {
       dynamic(trello) {
-        return fetchWeatherData(trello).then(weatherData => {
+        return fetchWeatherData(trello).then((weatherData) => {
           const conditionKey = getConditionKey(weatherData.conditions);
           return {
             title: trello.localizeKey('conditions'),
@@ -103,7 +103,7 @@ window.TrelloPowerUp.initialize(
   {
     'card-badges': getWeatherBadges,
     'card-detail-badges': getWeatherBadges,
-    'show-settings': t => {
+    'show-settings': (t) => {
       return t.popup({
         title: t.localizeKey('weather-settings'),
         url: './settings.html',

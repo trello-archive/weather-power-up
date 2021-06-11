@@ -2,13 +2,13 @@
 const API_BASE = 'https://api.openweathermap.org/data/2.5/weather?appid=%%APP_ID%%';
 const { Promise } = window.TrelloPowerUp;
 
-const clearCache = t => {
+const clearCache = (t) => {
   if (t.memberCanWriteToModel('card')) {
     t.remove('card', 'shared', 'cache');
   }
 };
 
-const getCachedData = t =>
+const getCachedData = (t) =>
   Promise.all([t.card('coordinates'), t.get('card', 'shared', 'cache')]).then(([card, cache]) => {
     if (!cache) {
       // nothing cached at the moment
@@ -80,8 +80,8 @@ export default function fetchWeatherData(t, lang = 'en') {
       const units = 'metric';
       // see: https://openweathermap.org/weather-data for more parameters
       return fetch(`${API_BASE}&units=${units}&lang=${lang}&lat=${latitude}&lon=${longitude}`)
-        .then(response => response.json())
-        .then(weatherData => {
+        .then((response) => response.json())
+        .then((weatherData) => {
           // we only care about a bit of the data
           const weather = {};
           weather.temp = weatherData.main.temp;

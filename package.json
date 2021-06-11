@@ -7,7 +7,7 @@
   "author": "Matt Cowan <mcowan@atlassian.com>",
   "license": "MIT",
   "engines": {
-    "node": "15"
+    "node": "16"
   },
   "scripts": {
     "build": "parcel build src/html/*.html",
@@ -15,17 +15,17 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.12.1",
-    "eslint-config-airbnb": "^18.2.0",
-    "eslint-config-prettier": "^6.15.0",
-    "eslint-plugin-import": "^2.22.1",
+    "eslint": "^7.28.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-react": "^7.21.5",
-    "parcel-bundler": "^1.12.4",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.24.0",
+    "parcel-bundler": "^1.12.5",
     "parcel-plugin-interpolate-env": "^0.0.1",
-    "parcel-plugin-static-files-copy": "^2.5.0",
-    "prettier": "^2.1.2"
+    "parcel-plugin-static-files-copy": "^2.6.0",
+    "prettier": "^2.3.1"
   },
   "eslintConfig": {
     "env": {
