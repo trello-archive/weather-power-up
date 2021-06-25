@@ -63,7 +63,7 @@ const handler = async (event) => {
       return { statusCode: 400, body: 'Bad request' };
     }
 
-    const { Authorization, referer } = event.headers;
+    const { authorization, referer } = event.headers;
 
     if (referer !== 'https://weather-power-up.netlify.app/') {
       console.log('Rejected request from referer', referer);
@@ -72,9 +72,9 @@ const handler = async (event) => {
 
     let context;
     try {
-      context = await decodeAndValidate(Authorization);
+      context = await decodeAndValidate(authorization);
     } catch (err) {
-      console.log('Rejected request with invalid JWT', Authorization);
+      console.log('Rejected request with invalid JWT', authorization);
       return { statusCode: 401, body: 'Unauthorized' };
     }
 
@@ -84,7 +84,7 @@ const handler = async (event) => {
       statusCode: 200,
       body: JSON.stringify(forecast),
       headers: {
-        'Content-Type': 'application/json; charset=utf-8',
+        contentType: 'application/json; charset=utf-8',
       },
     };
   } catch (error) {
