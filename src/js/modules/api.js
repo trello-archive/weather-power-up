@@ -83,7 +83,7 @@ export default function fetchWeatherData(t, lang = 'en') {
           },
         }
       ).then((weatherData) => {
-        cacheWeatherData(t, card.coordinates, weatherData);
+        // cacheWeatherData(t, card.coordinates, weatherData);
         weatherRequests.delete(idCard);
         return weatherData;
       });

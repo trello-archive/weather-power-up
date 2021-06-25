@@ -17,6 +17,7 @@ const getPublicKeys = async () => {
     publicKeysExpiry = Date.now() + 14400000;
   }
 
+  console.log('Retrieved Trello public keys', publicKeysCache);
   return publicKeysCache;
 };
 
