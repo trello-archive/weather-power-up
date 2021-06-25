@@ -69,10 +69,10 @@ export default function fetchWeatherData(t, lang = 'en') {
       }
 
       const { latitude, longitude } = card.coordinates;
-      // if (cache) {
-      //   weatherRequests.delete(idCard);
-      //   return cache;
-      // }
+      if (cache) {
+        weatherRequests.delete(idCard);
+        return cache;
+      }
 
       // our card has a location, let's fetch the current weather
       return fetch(
@@ -82,11 +82,13 @@ export default function fetchWeatherData(t, lang = 'en') {
             Authorization: jwt,
           },
         }
-      ).then((weatherData) => {
-        // cacheWeatherData(t, card.coordinates, weatherData);
-        weatherRequests.delete(idCard);
-        return weatherData;
-      });
+      )
+        .then((resp) => resp.json())
+        .then((weatherData) => {
+          cacheWeatherData(t, card.coordinates, weatherData);
+          weatherRequests.delete(idCard);
+          return weatherData;
+        });
     }
   );
 
