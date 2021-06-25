@@ -13,6 +13,9 @@
     "build": "parcel build src/html/*.html",
     "lint": "eslint src"
   },
+  "dependencies": {
+    "bent": "^7.3.12"
+  },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "eslint": "^7.28.0",
