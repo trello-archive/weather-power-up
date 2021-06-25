@@ -65,3 +65,6 @@ typings/
 
 # ParcelJS build folder
 dist/
+
+# Local Netlify folder
+.netlify
