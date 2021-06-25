@@ -2,7 +2,7 @@ const bent = require('bent');
 
 const getJSON = bent('json');
 
-const API_BASE = 'https://api.openweathermap.org/data/2.5/weather?appid=%%APP_ID%%';
+const API_BASE = `https://api.openweathermap.org/data/2.5/weather?appid=${process.env.APP_ID}`;
 
 const fetchWeatherForecast = async (units, lang, latitude, longitude) => {
   // see: https://openweathermap.org/weather-data for more parameters
