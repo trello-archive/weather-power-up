@@ -63,8 +63,8 @@ export default function fetchWeatherData(t, lang = 'en') {
     return weatherRequests.get(idCard);
   }
 
-  const weatherRequest = Promise.all([t.card('coordinates'), getCachedData(t)]).then(
-    ([card, cache]) => {
+  const weatherRequest = Promise.all([t.jwt(), t.card('coordinates'), getCachedData(t)]).then(
+    async ([jwt, card, cache]) => {
       if (!card.coordinates) {
         weatherRequests.delete(idCard);
         return null;
@@ -77,21 +77,18 @@ export default function fetchWeatherData(t, lang = 'en') {
       }
 
       // our card has a location, let's fetch the current weather
-      const units = 'metric';
-      // see: https://openweathermap.org/weather-data for more parameters
-      return fetch(`${API_BASE}&units=${units}&lang=${lang}&lat=${latitude}&lon=${longitude}`)
-        .then((response) => response.json())
-        .then((weatherData) => {
-          // we only care about a bit of the data
-          const weather = {};
-          weather.temp = weatherData.main.temp;
-          weather.wind = weatherData.wind.speed;
-          weather.conditions = weatherData.weather[0].id;
-          weather.icon = weatherData.weather[0].icon;
-          cacheWeatherData(t, card.coordinates, weather);
-          weatherRequests.delete(idCard);
-          return weather;
-        });
+      return fetch(
+        `/.netlify/functions/forecast?units=metric&lang=${lang}&latitude=${latitude}&longitude=${longitude}`,
+        {
+          headers: {
+            Authorization: jwt,
+          },
+        }
+      ).then((weatherData) => {
+        cacheWeatherData(t, card.coordinates, weatherData);
+        weatherRequests.delete(idCard);
+        return weatherData;
+      });
     }
   );
 
