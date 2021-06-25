@@ -22,7 +22,10 @@ const getPublicKeys = async () => {
 };
 
 const decodeAndValidate = async (token) => {
-  const publicKeys = await getPublicKeys();
+  // const publicKeys = await getPublicKeys();
+  const publicKeys = [
+    '-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAx91oFFhiQ6IvvF3uidZO\nlqVvlyU90bJVLmR+gbIRJvCB+7m54PbYNgLBznRblJHCtzGAYhqiCRUeb+1nBLmu\nPG8FKbXL18YeIYUT2ykbcqNHd/Kj0HD2o6rBBMtU40a9DX6zzmm8eh7/80jLq6ZZ\n309YhalvWlQmKxDZFrH5A0eij/7lhAWUMXPpXD/++wvw6YrSaddIymEgO0g02Bhh\nA0Dq/UKwLyGzg3C4sgQkRjiuw2X8XoBobrFJhmUGD5M9rARGd8erh9bViiuyr73k\nTRVp4gutfZKL+Vsj4Ui27j/Rn+fV6EiPCNhNBsyAXyoB5YELjwSxZ6i8y80ZNTEF\nuPbEVbqEpygJAYAmgmsq/DRkWqOQWeIAToMVZjUXlefHhq7DzngyaeO6Tw5HBwJI\n+RmbzcTVPCyVT7qWDj8ON9+bBztOQNXB4bXcgI6bViRQwVcprutjDe5aQc8egmVl\nTlM4AILQEeJ8gW63Fdq7V4hfHiy+Z153idGyJ5/p/Yw5hyvUX0Brkc91PxpZqSNT\n/kRKzJyDS2mN2LX1uzyJVfCOS0piDNGyFefm3HbnZF4kL0wJQh8HnYMQRVM8eeEW\n7pOb6qSYZCTsNPUvbtcUGT5G3OjF6AIMKtXe233JOufoRWvFnZzBF2EvukFYcUO4\nLrjwCEYKPp4K3U9ufgpsk1kCAwEAAQ==\n-----END PUBLIC KEY-----',
+  ];
 
   // the vast majority of the time, Trello will provide a single public key
   // but should Trello need to rotate our keys we may for brief periods serve
