@@ -62,7 +62,7 @@ export default function fetchWeatherData(t, lang = 'en') {
   }
 
   const weatherRequest = Promise.all([t.jwt(), t.card('coordinates'), getCachedData(t)]).then(
-    async ([jwt, card, cache]) => {
+    ([jwt, card, cache]) => {
       if (!card.coordinates) {
         weatherRequests.delete(idCard);
         return null;
