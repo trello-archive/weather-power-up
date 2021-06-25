@@ -69,10 +69,10 @@ export default function fetchWeatherData(t, lang = 'en') {
       }
 
       const { latitude, longitude } = card.coordinates;
-      if (cache) {
-        weatherRequests.delete(idCard);
-        return cache;
-      }
+      // if (cache) {
+      //   weatherRequests.delete(idCard);
+      //   return cache;
+      // }
 
       // our card has a location, let's fetch the current weather
       return fetch(
