@@ -74,7 +74,7 @@ const handler = async (event) => {
     try {
       context = await decodeAndValidate(Authorization);
     } catch (err) {
-      console.log('Rejected request with invalid JWT');
+      console.log('Rejected request with invalid JWT', Authorization);
       return { statusCode: 401, body: 'Unauthorized' };
     }
 
