@@ -89,7 +89,7 @@ const handler = async (event) => {
       statusCode: 200,
       body: JSON.stringify(forecast),
       headers: {
-        contentType: 'application/json; charset=utf-8',
+        'Content-Type': 'application/json; charset=utf-8',
       },
     };
   } catch (error) {
