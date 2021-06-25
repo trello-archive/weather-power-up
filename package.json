@@ -14,7 +14,8 @@
     "lint": "eslint src"
   },
   "dependencies": {
-    "bent": "^7.3.12"
+    "bent": "^7.3.12",
+    "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
