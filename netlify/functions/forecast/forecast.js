@@ -91,7 +91,7 @@ const handler = async (event) => {
       headers: {
         // note generally you wouldn't cache authenticated responses, but this
         // is just the weather not something private
-        'Cache-Control': 'public, max-age=1800, immutable',
+        // 'Cache-Control': 'public, max-age=1800, immutable',
         'Content-Type': 'application/json; charset=utf-8',
       },
     };
